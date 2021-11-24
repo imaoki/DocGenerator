@@ -1,0 +1,143 @@
+            program = root_global ;
+
+        root_global = { [ root_delimiter ] , ( struct_decl | global_var_decl | global_var_name | expr_seq ) } ;
+
+    non_root_global = { [ non_root_delimiter ] , ( global_var_decl | global_var_name | expr_seq ) } ;
+
+           expr_seq = "(" , [ non_root_global ] , [ non_root_delimiter ] , ")" ;
+
+     root_delimiter = { delimited_literal | ( any_char - ( struct_start | global_start | global_symbol | "(" | ")" ) ) } ;
+
+ non_root_delimiter = { delimited_literal | ( any_char - ( global_start | global_symbol | "(" | ")" ) ) } ;
+
+  delimited_literal = path_name_literal
+                    | block_comment
+                    | single_line_comment
+                    | string_literal
+                    ;
+
+        struct_decl = struct_start , whitespace , var_name ;
+
+    global_var_decl = global_start , whitespace , var_name ;
+
+       struct_start = "struct" ;
+
+       global_start = "global" ;
+
+    global_var_name = global_symbol , ( ( keyword , identifier ) | ( identifier - keyword ) | quoted_name );
+
+           var_name = [ global_symbol ] , ( ( keyword , identifier ) | ( identifier - keyword ) | quoted_name ) ;
+
+      global_symbol = "::" ;
+
+      block_comment = "/*" , { any_char - "*/" } , "*/" ;
+
+single_line_comment = "--" , { any_char - new_line } ;
+
+     string_literal = '@"' , { any_char - '"' } , '"'
+                    | '"' , { escape_seq | ( any_char - '"' ) } , '"'
+                    ;
+
+         escape_seq = '\"' | "\n" | "\r" | "\t" | "\*" | "\?" | "\\" | "\%" | ( "\x" , hex_digits ) ;
+
+  path_name_literal = "$" , [ path ] ;
+
+               path = [ objectset ] , [ "/" ] , [ levels ] , level ;
+
+             levels = level , { "/" , level } ;
+
+              level = "'" , { ( any_char - "'" ) | "\*" | "\?" | "\\" } , "'"
+                    | { alphanumeric | "_" | "*" | "?" | "\" }
+                    | "..."
+                    ;
+
+          objectset = "cameras"
+                    | "geometry"
+                    | "helpers"
+                    | "lights"
+                    | "objects"
+                    | "selection"
+                    | "shapes"
+                    | "spacewarps"
+                    | "systems"
+                    ;
+
+         identifier = ( letter | "_" ) , { alphanumeric | "_" } ;
+
+        quoted_name = "'" , { any_char - "'" } , "'" ;
+
+       alphanumeric = letter | digit ;
+
+              digit = ? 0-9 ? ;
+
+         hex_digits = { hex_digit }+ ;
+
+          hex_digit = ? a-fA-F0-9 ? ;
+
+             letter = ? a-zA-Z ? ;
+
+         whitespace = { continuation | space | new_line }+ ;
+
+       continuation = "\" , { space } , new_line ;
+
+              space = " " | "\t" ;
+
+           new_line = "\n" ;
+
+            keyword = "about"
+                    | "and"
+                    | "animate"
+                    | "as"
+                    | "at"
+                    | "attributes"
+                    | "by"
+                    | "case"
+                    | "catch"
+                    | "collect"
+                    | "continue"
+                    | "coordsys"
+                    | "do"
+                    | "else"
+                    | "exit"
+                    | "fn"
+                    | "for"
+                    | "from"
+                    | "function"
+                    | "global"
+                    | "if"
+                    | "in"
+                    | "local"
+                    | "macroscript"
+                    | "mapped"
+                    | "max"
+                    | "not"
+                    | "of"
+                    | "off"
+                    | "on"
+                    | "or"
+                    | "parameters"
+                    | "persistent"
+                    | "plugin"
+                    | "private"
+                    | "public"
+                    | "rcmenu"
+                    | "return"
+                    | "rollout"
+                    | "set"
+                    | "struct"
+                    | "then"
+                    | "throw"
+                    | "to"
+                    | "tool"
+                    | "try"
+                    | "undo"
+                    | "utility"
+                    | "when"
+                    | "where"
+                    | "while"
+                    | "with"
+                    ;
+
+                eof = ? End of file ? ;
+
+           any_char = ? Any visible characters ? ;

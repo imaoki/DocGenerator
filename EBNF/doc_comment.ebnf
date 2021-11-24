@@ -1,0 +1,84 @@
+             program = start , [ whitespace ] , [ text ] , [ tags ] , [ whitespace ] , end ;
+
+                tags = { [ whitespace ] , tag } ;
+
+                 tag = param_tag | prop_tag | returns_tag | var_tag | remarks_tag ;
+
+           param_tag = tag_type_param , [ whitespace ] , param_name , [ whitespace ] , class_form , [ whitespace ] , [ text ] ;
+
+            prop_tag = tag_type_prop , [ whitespace ] , class_form , [ whitespace ] , [ text ] ;
+
+         returns_tag = tag_type_returns , [ whitespace ] , class_form , [ whitespace ] , [ text ] ;
+
+             var_tag = tag_type_var , [ whitespace ] , class_form , [ whitespace ] , [ text ] ;
+
+         remarks_tag = tag_type_remarks , [ whitespace ] , [ text ] ;
+
+          param_name = var_name , [ ":" ] ;
+
+          class_form = "<" , class_decl , { "|" , class_decl } , ">" ;
+
+          class_decl = constructor_def
+                     | accessor_def
+                     | class_def
+                     | class_name
+                     ;
+
+     constructor_def = var_name , { [ whitespace ] , ( positional_parameter | keyword_parameter ) }+ ;
+
+        accessor_def = var_name , "[" , class_form , "]" ;
+
+           class_def = var_name , ":" , class_name ;
+
+          class_name = var_name , { "." , var_name } ;
+
+positional_parameter = class_form ;
+
+   keyword_parameter = var_name , ":" , class_form ;
+
+            var_name = [ "&" ] , ( identifier | quoted_name ) ;
+
+                text = { any_char - ( tag_type | end ) };
+
+            tag_type = tag_type_param
+                     | tag_type_prop
+                     | tag_type_remarks
+                     | tag_type_returns
+                     | tag_type_var
+                     ;
+
+      tag_type_param = tag_type_symbol , "param" ;
+
+       tag_type_prop = tag_type_symbol , "prop" ;
+
+    tag_type_remarks = tag_type_symbol , "remarks" ;
+
+    tag_type_returns = tag_type_symbol , "returns" ;
+
+        tag_type_var = tag_type_symbol , "var" ;
+
+     tag_type_symbol = "@" ;
+
+               start = "/*-" ;
+
+                 end = "*/" ;
+
+          identifier = ( letter | "_" ) , { alphanumeric | "_" } ;
+
+         quoted_name = "'" , { any_char - "'" } , "'" ;
+
+        alphanumeric = letter | digit ;
+
+               digit = ? 0-9 ? ;
+
+              letter = ? a-zA-Z ? ;
+
+          whitespace = { space | new_line }+ ;
+
+               space = " " | "\t" ;
+
+            new_line = "\n" ;
+
+                 eof = ? End of file ? ;
+
+            any_char = ? Any visible characters ? ;
