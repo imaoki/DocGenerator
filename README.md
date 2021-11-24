@@ -18,6 +18,14 @@
 
 * 任意のテンプレートファイルを指定可能。
 
+## 依存リポジトリ
+
+* [imaoki/Markdown](https://github.com/imaoki/Markdown)
+
+* [imaoki/ParserCombinator](https://github.com/imaoki/ParserCombinator)
+
+* [imaoki/Standard](https://github.com/imaoki/Standard)
+
 ## 使い方
 
 既定では本スクリプトを配置したディレクトリを基準にファイルが生成される。
