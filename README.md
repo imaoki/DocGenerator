@@ -18,6 +18,10 @@
 
 * 任意のテンプレートファイルを指定可能。
 
+## 出力サンプル
+
+[mxsdoc](https://imaoki.github.io/mxskb/document/)
+
 ## 要件
 
 * [imaoki/Markdown](https://github.com/imaoki/Markdown)
