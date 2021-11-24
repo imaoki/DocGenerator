@@ -106,8 +106,8 @@
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `BasePath`          | 検索の基点になるディレクトリの絶対パスまたは相対パス。既定値は`@".\"`。                                                                                         |
 | `DateFormat`        | 更新日に使用する[日時書式指定文字列](https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/custom-date-and-time-format-strings)。既定値は`"yyyy-MM-dd"`。 |
-| `DotNetApiBaseUrl`  | 自動リンクに使用する.NET APIブラウザのベースURL。                                                                                                               |
-| `DotNetApiVersion`  | 自動リンクに使用する.NET APIブラウザのバージョン。                                                                                                              |
+| `DotNetApiBaseUrl`  | 自動リンクに使用する.NET APIブラウザのベースURL。既定値は`"https://docs.microsoft.com/ja-jp/dotnet/api/"`。                                                     |
+| `DotNetApiVersion`  | 自動リンクに使用する.NET APIブラウザのバージョン。既定値は`"netframework-4.8"`。                                                                                |
 | `EncodingBom`       | UTF-8エンコーディングのBOMの有無。既定値は`false`。                                                                                                             |
 | `EncodingName`      | スクリプトファイルのエンコーディングの名前。既定値は`"utf-8"`                                                                                                   |
 | `FileNameSeparator` | HTMLファイル名のセパレータ。既定値は`"-"`。                                                                                                                     |

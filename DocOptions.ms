@@ -7,9 +7,9 @@ struct DocOptionsStruct (
   public BasePath = @".\",
   /*- @prop <String> 更新日に使用する[日時書式指定文字列](https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/custom-date-and-time-format-strings)。既定値は`"yyyy-MM-dd"`。 */
   public DateFormat = "yyyy-MM-dd",
-  /*- @prop <String> 自動リンクに使用する.NET APIブラウザのベースURL。 */
+  /*- @prop <String> 自動リンクに使用する.NET APIブラウザのベースURL。既定値は`"https://docs.microsoft.com/ja-jp/dotnet/api/"`。 */
   public DotNetApiBaseUrl = "https://docs.microsoft.com/ja-jp/dotnet/api/",
-  /*- @prop <String> 自動リンクに使用する.NET APIブラウザのバージョン。 */
+  /*- @prop <String> 自動リンクに使用する.NET APIブラウザのバージョン。既定値は`"netframework-4.8"`。 */
   public DotNetApiVersion = "netframework-4.8",
   /*- @prop <BooleanClass> UTF-8エンコーディングのBOMの有無。既定値は`false`。 */
   public EncodingBom = false,
