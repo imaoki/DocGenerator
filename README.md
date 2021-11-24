@@ -18,7 +18,7 @@
 
 * 任意のテンプレートファイルを指定可能。
 
-## 依存リポジトリ
+## 要件
 
 * [imaoki/Markdown](https://github.com/imaoki/Markdown)
 
@@ -344,3 +344,7 @@ struct TestStruct (
 ```
 
 不特定の型を取りうる場合は`Any`を使用する。
+
+## ライセンス
+
+[MIT License](https://github.com/imaoki/DocGenerator/blob/main/LICENSE)
