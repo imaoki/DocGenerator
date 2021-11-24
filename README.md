@@ -95,7 +95,7 @@
 
 ```maxscript
 (
-  local options = DocOptionsStruct BasePath=@"..\"
+  local options = DocOptionsStruct BasePath:@"..\"
   local dg = DocGeneratorStruct options
 )
 ```
