@@ -329,16 +329,20 @@ struct TestStruct (
 <変数名:クラス名>
 ```
 
-| 型の種類                     | 変数名                     |
-| ---------------------------- | -------------------------- |
-| 構造体定義                   | `<StructDef:クラス名>`     |
-| 構造体インスタンス           | `<Struct:クラス名>`        |
-| 型が不明な構造体定義         | `<StructDef>`              |
-| 型が不明な構造体インスタンス | `<Struct>`                 |
-| 参照値                       | `<ValueRef:クラス名>`      |
-| `DotNetClass`                | `<DotNetClass:クラス名>`   |
-| `DotNetControl`              | `<DotNetControl:クラス名>` |
-| `DotNetObject`               | `<DotNetObject:クラス名>`  |
+| 型の種類                             | 変数名                     |
+| ------------------------------------ | -------------------------- |
+| 構造体定義                           | `<StructDef:クラス名>`     |
+| 構造体インスタンス                   | `<Struct:クラス名>`        |
+| 型が不明な構造体定義                 | `<StructDef>`              |
+| 型が不明な構造体インスタンス         | `<Struct>`                 |
+| アトリビュート定義                   | `<AttributeDef:クラス名>`  |
+| アトリビュートインスタンス           | `<Attribute:クラス名>`     |
+| 型が不明なアトリビュート定義         | `<AttributeDef>`           |
+| 型が不明なアトリビュートインスタンス | `<Attribute>`              |
+| 参照値                               | `<ValueRef:クラス名>`      |
+| `DotNetClass`                        | `<DotNetClass:クラス名>`   |
+| `DotNetControl`                      | `<DotNetControl:クラス名>` |
+| `DotNetObject`                       | `<DotNetObject:クラス名>`  |
 
 ###### クラス名
 
