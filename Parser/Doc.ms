@@ -380,6 +380,19 @@ struct DocStruct (
 
   /*-
   @returns <Struct>
+  @remarks 先頭の文字列が重複しているトークンは長い方を前に記述すること。
+
+  誤
+  :   ```maxscript
+      "at",
+      "attributes"
+      ```
+
+  正
+  :   ```maxscript
+      "attributes",
+      "at"
+      ```
   */
   private fn keyword = (
     this.pc.Choice #(
@@ -387,8 +400,8 @@ struct DocStruct (
       this.pc.Token "and",
       this.pc.Token "animate",
       this.pc.Token "as",
-      this.pc.Token "at",
       this.pc.Token "attributes",
+      this.pc.Token "at",
       this.pc.Token "by",
       this.pc.Token "case",
       this.pc.Token "catch",
@@ -410,8 +423,8 @@ struct DocStruct (
       this.pc.Token "mapped",
       this.pc.Token "max",
       this.pc.Token "not",
-      this.pc.Token "of",
       this.pc.Token "off",
+      this.pc.Token "of",
       this.pc.Token "on",
       this.pc.Token "or",
       this.pc.Token "parameters",
@@ -426,8 +439,8 @@ struct DocStruct (
       this.pc.Token "struct",
       this.pc.Token "then",
       this.pc.Token "throw",
-      this.pc.Token "to",
       this.pc.Token "tool",
+      this.pc.Token "to",
       this.pc.Token "try",
       this.pc.Token "undo",
       this.pc.Token "utility",

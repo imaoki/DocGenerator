@@ -185,6 +185,39 @@
     )
   )
   assert (actual.Equals expected == true)
+  -- ドキュメントコメントとカスタムアトリビュート
+  actual = ::TestValueStruct (testObj.Parse "/*-hoge*/attributes Foo")
+  actual.Dump()
+  expected = ::TestValueStruct (
+    ::AstNodeStruct Type:#Document Value:#(
+      ::AstNodeStruct Type:#SimpleDoc Value:#(
+        ::AstNodeStruct Type:#DocComment Value:#(
+          ::AstNodeStruct Type:#Text Value:"hoge"
+        ),
+        ::AstNodeStruct Type:#Keywords Value:#(
+          ::AstNodeStruct Type:#Keyword Value:"attributes"
+        ),
+        ::AstNodeStruct Type:#VarName Value:"Foo"
+      )
+    )
+  )
+  assert (actual.Equals expected == true)
+  -- ドキュメントコメントと構造体
+  actual = ::TestValueStruct (testObj.Parse "/*-hoge*/struct Foo")
+  expected = ::TestValueStruct (
+    ::AstNodeStruct Type:#Document Value:#(
+      ::AstNodeStruct Type:#SimpleDoc Value:#(
+        ::AstNodeStruct Type:#DocComment Value:#(
+          ::AstNodeStruct Type:#Text Value:"hoge"
+        ),
+        ::AstNodeStruct Type:#Keywords Value:#(
+          ::AstNodeStruct Type:#Keyword Value:"struct"
+        ),
+        ::AstNodeStruct Type:#VarName Value:"Foo"
+      )
+    )
+  )
+  assert (actual.Equals expected == true)
   -- ドキュメントコメントとパブリックメソッド
   actual = ::TestValueStruct (testObj.Parse "/*-hoge*/public fn foo")
   expected = ::TestValueStruct (
