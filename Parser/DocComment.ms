@@ -507,7 +507,7 @@ struct DocCommentStruct (
   ),
 
   /*-
-  パース結果をASTNode化する。
+  パース結果をAstNode化する。
   @param type <Name>
   @param result <Any|Struct:FailureStruct>
   @returns <Struct:AstNodeStruct|Struct:FailureStruct>
