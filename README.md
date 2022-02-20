@@ -18,9 +18,9 @@
 
 * 任意のテンプレートファイルを指定可能。
 
-## 出力サンプル
+## サンプル
 
-[mxsdoc](https://imaoki.github.io/mxskb/document/)
+[mxsdoc](https://imaoki.github.io/mxskb/mxsdoc/)
 
 ## 要件
 
@@ -29,6 +29,10 @@
 * [imaoki/ParserCombinator](https://github.com/imaoki/ParserCombinator)
 
 * [imaoki/Standard](https://github.com/imaoki/Standard)
+
+## 動作確認
+
+`2022.3 Update`
 
 ## 使い方
 
