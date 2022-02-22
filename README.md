@@ -34,6 +34,18 @@
 
 `2022.3 Update`
 
+## スクリプトの実行
+
+01. `Standard\register.ms`を実行する。
+
+02. `ParserCombinator\register.ms`を実行する。
+
+03. `Markdown\register.ms`を実行する。
+
+04. `DocGenerator\DocOptions.ms`を実行する。
+
+05. `DocGenerator\DocGenerator.ms`を実行する。
+
 ## 使い方
 
 既定では本スクリプトを配置したディレクトリを基準にファイルが生成される。
@@ -43,7 +55,7 @@
 
 ```maxscript
 (
-  local dg = DocGeneratorStruct()
+  local dg = ::DocGeneratorStruct()
   dg.FromFile @"C:\Script\Foo\Bar.ms"
 )
 
@@ -61,7 +73,7 @@
 
 ```maxscript
 (
-  local dg = DocGeneratorStruct()
+  local dg = ::DocGeneratorStruct()
   dg.FromDirectory @"C:\Script" recursive:true
 )
 
@@ -74,7 +86,7 @@
 
 ```maxscript
 (
-  local dg = DocGeneratorStruct()
+  local dg = ::DocGeneratorStruct()
   dg.IndexFromDirectory @"C:\Script" recursive:true
 )
 
@@ -99,7 +111,7 @@
     @"*\TestValue\TestValue.ms"
   )
 
-  local dg = DocGeneratorStruct()
+  local dg = ::DocGeneratorStruct()
   dg.FromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
   dg.IndexFromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
 )
@@ -111,8 +123,8 @@
 
 ```maxscript
 (
-  local options = DocOptionsStruct BasePath:@"..\"
-  local dg = DocGeneratorStruct options
+  local options = ::DocOptionsStruct BasePath:@"..\"
+  local dg = ::DocGeneratorStruct options
 )
 ```
 
