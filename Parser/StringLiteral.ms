@@ -127,7 +127,7 @@ struct StringLiteralStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = ::ParserCombinatorStruct()
     this.parser = this.stringLiteral()
   )

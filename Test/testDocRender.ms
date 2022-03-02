@@ -6,7 +6,7 @@
   local sw = DotNetObject "System.Diagnostics.Stopwatch"
 
   local currentFile = getSourceFileName()
-  local pathUtility = ::PathUtilityStruct currentFile
+  local pathUtility = ::std.PathUtilityStruct currentFile
 
   local actual
   local expected
@@ -79,7 +79,7 @@
 
   local results = #()
   fn dumpRenderResult = (
-    local hr = ::stringUtility.PadLeft "\n" 80 "-"
+    local hr = ::std.StringUtility.PadLeft "\n" 80 "-"
     for result in results do (
       format "%" hr
       format "%" result
@@ -117,7 +117,7 @@
   assert (actual.Equals expected == true)
   append results (actual.GetValue())
   -- docTest.ms
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @"..\Parser\Test\Data\docTest.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @"..\Parser\Test\Data\docTest.ms")
   actual = ::TestValueStruct (
     testObj.Render (parser.Parse code) docTitle:"docTest" dependent:dependentD
   )

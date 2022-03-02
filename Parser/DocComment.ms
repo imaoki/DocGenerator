@@ -533,7 +533,7 @@ struct DocCommentStruct (
   */
   private fn trimText result = (
     if classOf result == String then (
-      result = ::stringUtility.Trim result
+      result = ::std.StringUtility.Trim result
       if result.Count == 0 then (
         ::NotCollectStruct()
       )
@@ -577,7 +577,7 @@ struct DocCommentStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = ::ParserCombinatorStruct()
     this.parser = this.program()
   )

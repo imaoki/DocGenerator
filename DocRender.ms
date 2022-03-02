@@ -47,7 +47,7 @@ struct DocRenderStruct (
     local docContent = StringStream ""
     format "%" (this.dependentToHtml dependent) to:docContent
     format "%" (
-      ::stringUtility.Trim (this.docToHtml astNode 3 dependent)
+      ::std.StringUtility.Trim (this.docToHtml astNode 3 dependent)
     ) to:docContent
     docContent = docContent as String
     this.toc = this.toc as String
@@ -88,7 +88,7 @@ struct DocRenderStruct (
   private fn adjustIndent input indent:"  " = (
     local indentCount = 0
     local indentValue = undefined
-    local lines = ::stringUtility.Split input "\n" removeEmpty:false
+    local lines = ::std.StringUtility.Split input "\n" removeEmpty:false
     for s in lines do (
       local space = (this.spaceRegex.Match s).Value
       local spaceCount = space.Count
@@ -200,7 +200,7 @@ struct DocRenderStruct (
           local html = for v in n.Value collect (
             this.docCommentToHtml v dependent
           )
-          html = ::stringUtility.Join html separator:"|"
+          html = ::std.StringUtility.Join html separator:"|"
           format "%" html to:out
           format "&gt;" to:out
         )
@@ -208,7 +208,7 @@ struct DocRenderStruct (
           local html = for v in n.Value collect (
             this.docCommentToHtml v dependent
           )
-          html = ::stringUtility.Join html separator:"."
+          html = ::std.StringUtility.Join html separator:"."
           format "%" html to:out
         )
         (#ConstructorDef): (
@@ -424,7 +424,7 @@ struct DocRenderStruct (
   @remarks ファイルが読み込めなかった場合や内容が空の場合は`defaultTemplate`の内容を返す。
   */
   private fn readTemplate = (
-    local code = ::fileUtility.ReadAllText (
+    local code = ::std.FileUtility.ReadAllText (
       this.pathUtility.GetFullPath this.Options.TemplatePath
     )
     if classOf code == String and code.Count > 0 then (
@@ -511,7 +511,7 @@ struct DocRenderStruct (
     format "%DocRenderStruct\n" indent to:out
     format "%  Options:\n" indent to:out
     this.Options.Dump indent:(indent + "    ") out:out
-    format "%  defaultTemplate:\"%\"\n" indent (::stringUtility.EscapeBackslash this.defaultTemplate) to:out
+    format "%  defaultTemplate:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.defaultTemplate) to:out
     ok
   ),
 
@@ -535,7 +535,7 @@ struct DocRenderStruct (
     if not this.isDocOptions this.Options do (
       this.Options = (fileIn "DocOptions.ms")()
     )
-    this.pathUtility = ::PathUtilityStruct (getSourceFileName())
-    this.spaceRegex = ::stringUtility.CreateRegex "^ +"
+    this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
+    this.spaceRegex = ::std.StringUtility.CreateRegex "^ +"
   )
 )

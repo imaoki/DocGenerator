@@ -6,7 +6,7 @@
   local sw = DotNetObject "System.Diagnostics.Stopwatch"
 
   local currentFile = getSourceFileName()
-  local pathUtility = ::PathUtilityStruct currentFile
+  local pathUtility = ::std.PathUtilityStruct currentFile
 
   local actual
   local expected
@@ -44,15 +44,15 @@
   -- 変換
   testObj.FromFile (pathUtility.GetFullPath @".\Data\FileA.ms")
   -- ファイルの存在を確認
-  actual = ::TestValueStruct (::fileUtility.FileExists destinationFiles[1])
+  actual = ::TestValueStruct (::std.FileUtility.FileExists destinationFiles[1])
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
   -- ファイルの内容を確認
-  actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[1])
+  actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[1])
   expected = ::TestValueStruct expectedCodes[1]
   assert (actual.Equals expected == true)
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
 
   /* FromDirectory */
   -- 対象ディレクトリのファイルのみ
@@ -70,18 +70,18 @@
   testObj.FromDirectory dataDir
   -- ファイルの存在を確認
   for file in destinationFiles do (
-    actual = ::TestValueStruct (::fileUtility.FileExists file)
+    actual = ::TestValueStruct (::std.FileUtility.FileExists file)
     expected = ::TestValueStruct true
     assert (actual.Equals expected == true)
   )
   -- ファイルの内容を確認
   for i = 1 to destinationFiles.Count do (
-    actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[i])
+    actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[i])
     expected = ::TestValueStruct expectedCodes[i]
     assert (actual.Equals expected == true)
   )
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
   -- サブディレクトリのファイルも全て
   destinationFiles = #(
     pathUtility.GetFullPath @".\TestDoc\data-_dira-filed.html",
@@ -105,18 +105,18 @@
   testObj.FromDirectory dataDir recursive:true
   -- ファイルの存在を確認
   for file in destinationFiles do (
-    actual = ::TestValueStruct (::fileUtility.FileExists file)
+    actual = ::TestValueStruct (::std.FileUtility.FileExists file)
     expected = ::TestValueStruct true
     assert (actual.Equals expected == true)
   )
   -- ファイルの内容を確認
   for i = 1 to destinationFiles.Count do (
-    actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[i])
+    actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[i])
     expected = ::TestValueStruct expectedCodes[i]
     assert (actual.Equals expected == true)
   )
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
   -- 単一パターンでファイルを除外
   destinationFiles = #(
     pathUtility.GetFullPath @".\TestDoc\data-dirb-filee.html",
@@ -136,18 +136,18 @@
   testObj.FromDirectory dataDir recursive:true ignore:@"*\_*"
   -- ファイルの存在を確認
   for file in destinationFiles do (
-    actual = ::TestValueStruct (::fileUtility.FileExists file)
+    actual = ::TestValueStruct (::std.FileUtility.FileExists file)
     expected = ::TestValueStruct true
     assert (actual.Equals expected == true)
   )
   -- ファイルの内容を確認
   for i = 1 to destinationFiles.Count do (
-    actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[i])
+    actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[i])
     expected = ::TestValueStruct expectedCodes[i]
     assert (actual.Equals expected == true)
   )
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
   -- 複数パターンでファイルを除外
   destinationFiles = #(
     pathUtility.GetFullPath @".\TestDoc\data-dirb-filee.html",
@@ -165,18 +165,18 @@
   testObj.FromDirectory dataDir recursive:true ignore:#(@"*\_*", "*A.ms")
   -- ファイルの存在を確認
   for file in destinationFiles do (
-    actual = ::TestValueStruct (::fileUtility.FileExists file)
+    actual = ::TestValueStruct (::std.FileUtility.FileExists file)
     expected = ::TestValueStruct true
     assert (actual.Equals expected == true)
   )
   -- ファイルの内容を確認
   for i = 1 to destinationFiles.Count do (
-    actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[i])
+    actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[i])
     expected = ::TestValueStruct expectedCodes[i]
     assert (actual.Equals expected == true)
   )
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
   -- 除外の例外パターンを指定
   destinationFiles = #(
     pathUtility.GetFullPath @".\TestDoc\data-dirb-filee.html",
@@ -198,32 +198,32 @@
   testObj.FromDirectory dataDir recursive:true ignore:@"*\_*" exception:@"*\_FileG.ms"
   -- ファイルの存在を確認
   for file in destinationFiles do (
-    actual = ::TestValueStruct (::fileUtility.FileExists file)
+    actual = ::TestValueStruct (::std.FileUtility.FileExists file)
     expected = ::TestValueStruct true
     assert (actual.Equals expected == true)
   )
   -- ファイルの内容を確認
   for i = 1 to destinationFiles.Count do (
-    actual = ::TestValueStruct (::fileUtility.ReadAllText destinationFiles[i])
+    actual = ::TestValueStruct (::std.FileUtility.ReadAllText destinationFiles[i])
     expected = ::TestValueStruct expectedCodes[i]
     assert (actual.Equals expected == true)
   )
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
 
   /* IndexFromDirectory */
   -- 対象ディレクトリのファイルのみ
   testObj.IndexFromDirectory dataDir
   -- ファイルの存在を確認
-  actual = ::TestValueStruct (::fileUtility.FileExists indexFile)
+  actual = ::TestValueStruct (::std.FileUtility.FileExists indexFile)
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
   -- ファイルの内容を確認
-  actual = ::TestValueStruct (::fileUtility.ReadAllText indexFile)
+  actual = ::TestValueStruct (::std.FileUtility.ReadAllText indexFile)
   expected = ::TestValueStruct "mxsdoc\nindex.html\nIndex\n\n<ul>\n<li><p>Data</p><ul>\n<li><p><a href=\"data-filea.html\">FileA.ms</a></p></li>\n<li><p><a href=\"data-fileb.html\">FileB.ms</a></p></li>\n<li><p><a href=\"data-filec.html\">FileC.ms</a></p></li>\n</ul></li>\n</ul>\n"
   assert (actual.Equals expected == true)
   -- データ削除
-  ::fileUtility.DeleteDirectory testDocDir
+  ::std.FileUtility.DeleteDirectory testDocDir
   /* Test End --------------------------------------------------------------- */
   sw.Stop()
   /* Teardown Start --------------------------------------------------------- */

@@ -6,7 +6,7 @@
   local sw = DotNetObject "System.Diagnostics.Stopwatch"
 
   local currentFile = getSourceFileName()
-  local pathUtility = ::PathUtilityStruct currentFile
+  local pathUtility = ::std.PathUtilityStruct currentFile
 
   local actual
   local expected
@@ -180,7 +180,7 @@
   assert (actual.Equals expected == true)
 
   /* docDependent.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docDependent.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docDependent.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct (

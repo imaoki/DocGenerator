@@ -75,11 +75,11 @@ struct DocGeneratorStruct (
     local content = this.docRender.RenderIndex html
     local indexPath = this.pathMaker.GetAbsoluteIndexPath()
     local destDirPath = this.pathUtility.GetDirectoryName indexPath
-    if not ::fileUtility.DirectoryExists destDirPath do (
-      ::fileUtility.CreateDirectory destDirPath
+    if not ::std.FileUtility.DirectoryExists destDirPath do (
+      ::std.FileUtility.CreateDirectory destDirPath
     )
-    if ::fileUtility.DirectoryExists destDirPath do (
-      ::fileUtility.WriteAllText indexPath content
+    if ::std.FileUtility.DirectoryExists destDirPath do (
+      ::std.FileUtility.WriteAllText indexPath content
     )
     ok
   ),
@@ -90,7 +90,7 @@ struct DocGeneratorStruct (
   @remarks HTMLファイルの書き込みは常にUTF-8Nで行う。
   */
   private fn convertFile path = (
-    local code = ::fileUtility.ReadAllText path.Source \
+    local code = ::std.FileUtility.ReadAllText path.Source \
         encoding:this.Options.EncodingName bom:this.Options.EncodingBom
     local docTitle = this.pathUtility.GetFileName path.Source
     local astNode = this.docParser.Parse code
@@ -100,11 +100,11 @@ struct DocGeneratorStruct (
         docTitle:docTitle \
         dependent:dependent
     local destDirPath = this.pathUtility.GetDirectoryName path.Destination
-    if not ::fileUtility.DirectoryExists destDirPath do (
-      ::fileUtility.CreateDirectory destDirPath
+    if not ::std.FileUtility.DirectoryExists destDirPath do (
+      ::std.FileUtility.CreateDirectory destDirPath
     )
-    if ::fileUtility.DirectoryExists destDirPath do (
-      ::fileUtility.WriteAllText path.Destination content
+    if ::std.FileUtility.DirectoryExists destDirPath do (
+      ::std.FileUtility.WriteAllText path.Destination content
     )
     ok
   ),
@@ -121,7 +121,7 @@ struct DocGeneratorStruct (
     case of (
       (aWeight < bWeight): -1
       (aWeight > bWeight): 1
-      default: ::comparer.CompareName a b
+      default: ::std.Comparer.CompareName a b
     )
   ),
 
@@ -151,7 +151,7 @@ struct DocGeneratorStruct (
   @returns <OkClass>
   */
   private fn extractDependent path = (
-    local code = ::fileUtility.ReadAllText path.Source \
+    local code = ::std.FileUtility.ReadAllText path.Source \
         encoding:this.Options.EncodingName bom:this.Options.EncodingBom
     local astNode = this.docDependentParser.Parse code
     this.docDependentTable.AddDependent astNode path
@@ -181,7 +181,7 @@ struct DocGeneratorStruct (
     local subPaths = #()
     for path in paths do (
       local lowPath = substituteString path.Source parentPath ""
-      local components = ::stringUtility.Split lowPath @"\"
+      local components = ::std.StringUtility.Split lowPath @"\"
       if components.Count > 0 do (
         local firstComponent = components[1]
         deleteItem components 1
@@ -271,6 +271,6 @@ struct DocGeneratorStruct (
     this.docParser = (fileIn @"Parser\Doc.ms") ShowError:this.Options.ShowError
     this.docRender = (fileIn "DocRender.ms") this.Options
     this.pathMaker = (fileIn "DocPathMaker.ms") this.Options
-    this.pathUtility = ::PathUtilityStruct (getSourceFileName())
+    this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
   )
 )

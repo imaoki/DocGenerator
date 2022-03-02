@@ -35,7 +35,7 @@ struct DocPathMakerStruct (
       exception = #(exception)
     )
     dir = this.trimEndBackslash dir
-    local files = ::fileUtility.GetFiles dir "*.ms" recursive:recursive
+    local files = ::std.FileUtility.GetFiles dir "*.ms" recursive:recursive
     for file in files collect (
       local shouldCollect = true
       if classOf ignore == Array do (
@@ -130,7 +130,7 @@ struct DocPathMakerStruct (
   */
   private fn trimEndBackslash input = (
     if matchPattern input pattern:@"*\" then (
-      ::stringUtility.TrimEnd input @"\"
+      ::std.StringUtility.TrimEnd input @"\"
     )
     else (
       input
@@ -172,6 +172,6 @@ struct DocPathMakerStruct (
     if not this.isDocOptions this.Options do (
       this.Options = (fileIn "DocOptions.ms")()
     )
-    this.pathUtility = ::PathUtilityStruct (getSourceFileName())
+    this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
   )
 )

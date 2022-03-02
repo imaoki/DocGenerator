@@ -41,10 +41,10 @@ struct DocDependentTableStruct (
         )
       )
       for key in this.declarationTable.Keys do (
-        qsort this.declarationTable[key] ::comparer.CompareProperty propName:#Source
+        qsort this.declarationTable[key] ::std.Comparer.CompareProperty propName:#Source
       )
       for key in this.dependentTable.Keys do (
-        qsort this.dependentTable[key] ::comparer.CompareStringLogical
+        qsort this.dependentTable[key] ::std.Comparer.CompareStringLogical
       )
     )
     ok
@@ -109,7 +109,7 @@ struct DocDependentTableStruct (
       format "%    [\"%\"]:%\n" indent key v.Count to:out
       for i = 1 to v.Count do (
         format "%      [%]:@\"%\"\n" \
-            indent i (::stringUtility.EscapeBackslash v[i]) to:out
+            indent i (::std.StringUtility.EscapeBackslash v[i]) to:out
       )
     )
 
@@ -117,7 +117,7 @@ struct DocDependentTableStruct (
     for key in this.dependentTable.Keys do (
       local v = this.dependentTable[key]
       format "%    [\"%\"]:%\n" \
-          indent (::stringUtility.EscapeBackslash key) v.Count to:out
+          indent (::std.StringUtility.EscapeBackslash key) v.Count to:out
       for i = 1 to v.Count do (
         format "%      [%]:@\"%\"\n" indent i v[i] to:out
       )

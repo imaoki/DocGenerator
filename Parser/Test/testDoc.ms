@@ -6,7 +6,7 @@
   local sw = DotNetObject "System.Diagnostics.Stopwatch"
 
   local currentFile = getSourceFileName()
-  local pathUtility = ::PathUtilityStruct currentFile
+  local pathUtility = ::std.PathUtilityStruct currentFile
 
   local actual
   local expected
@@ -413,7 +413,7 @@
   assert (actual.Equals expected == true)
 
   /* docBasic.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docBasic.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docBasic.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct (
@@ -454,7 +454,7 @@
   assert (actual.Equals expected == true)
 
   /* docExample.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docExample.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docExample.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct (
@@ -752,7 +752,7 @@
   assert (actual.Equals expected == true)
 
   /* docTest.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docTest.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docTest.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct (
@@ -1267,7 +1267,7 @@
   assert (actual.Equals expected == true)
 
   /* docErrorTest1.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docErrorTest1.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docErrorTest1.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct (
@@ -1286,7 +1286,7 @@
   assert (actual.Equals expected == true)
 
   /* docErrorTest2.ms */
-  code = ::fileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docErrorTest2.ms")
+  code = ::std.FileUtility.ReadAllText (pathUtility.GetFullPath @".\Data\docErrorTest2.ms")
   actual = ::TestValueStruct (testObj.Parse code)
   -- actual.Dump()
   expected = ::TestValueStruct notCollect

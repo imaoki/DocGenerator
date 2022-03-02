@@ -38,18 +38,18 @@ struct DocOptionsStruct (
   */
   public fn Dump indent:"" out:listener = (
     format "%DocOptionsStruct\n" indent to:out
-    format "%  BasePath:@\"%\"\n" indent (::stringUtility.EscapeBackslash this.basePath) to:out
+    format "%  BasePath:@\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.basePath) to:out
     format "%  DateFormat:\"%\"\n" indent this.DateFormat to:out
     format "%  DotNetApiBaseUrl:\"%\"\n" indent this.DotNetApiBaseUrl to:out
     format "%  DotNetApiVersion:\"%\"\n" indent this.DotNetApiVersion to:out
     format "%  EncodingBom:%\n" indent this.EncodingBom to:out
     format "%  EncodingName:\"%\"\n" indent this.EncodingName to:out
-    format "%  FileNameSeparator:\"%\"\n" indent (::stringUtility.EscapeBackslash this.FileNameSeparator) to:out
-    format "%  SaveDirectoryName:\"%\"\n" indent (::stringUtility.EscapeBackslash this.SaveDirectoryName) to:out
+    format "%  FileNameSeparator:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.FileNameSeparator) to:out
+    format "%  SaveDirectoryName:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.SaveDirectoryName) to:out
     format "%  ShowError:%\n" indent this.ShowError to:out
-    format "%  SiteTitle:\"%\"\n" indent (::stringUtility.EscapeBackslash this.SiteTitle) to:out
-    format "%  SiteUrl:\"%\"\n" indent (::stringUtility.EscapeBackslash this.SiteUrl) to:out
-    format "%  TemplatePath:\"%\"\n" indent (::stringUtility.EscapeBackslash this.TemplatePath) to:out
+    format "%  SiteTitle:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.SiteTitle) to:out
+    format "%  SiteUrl:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.SiteUrl) to:out
+    format "%  TemplatePath:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.TemplatePath) to:out
     ok
   ),
 
