@@ -4,6 +4,8 @@
 
 ## 特徴
 
+* Javadocライクな構文。
+
 * 解説をMarkdownで記述可能。
 
 * 依存ファイルの抽出と自動リンク。（ディレクトリ単位の変換でのみ有効）
@@ -36,20 +38,37 @@
 
 ## スクリプトの実行
 
-01. `Standard\register.ms`を実行する。
+01. 依存スクリプトがある場合は予めインストールしておく。
 
-02. `ParserCombinator\register.ms`を実行する。
+02. （任意）`DocOptions.ms`を実行する。
 
-03. `Markdown\register.ms`を実行する。
+03. `DocGenerator.ms`を実行する。
 
-04. `DocGenerator\DocOptions.ms`を実行する。
+## スタンドアローン版
 
-05. `DocGenerator\DocGenerator.ms`を実行する。
+### スクリプトの実行
+
+01. 依存スクリプトがある場合は予めインストールしておく。
+
+02. `Distribution\DocGenerator.min.ms`を実行する。
 
 ## 使い方
 
-既定では本スクリプトを配置したディレクトリを基準にファイルが生成される。
-ここでは`C:\Script\DocGenerator`に配置した前提で進める。
+ここでは以下のディレクトリ構造を前提として進める。
+
+* Script
+
+  * DocGenerator
+
+  * Foo
+
+    * Bar.ms
+
+  * Hoge
+
+    * Piyo.ms
+
+既定では`DocGenerator`ディレクトリを基準としたファイル名でファイルが生成される。
 
 ### 単一ファイルを変換
 
@@ -60,26 +79,20 @@
 )
 
 -- 出力先
-@"C:\Script\Document\foo-bar.html"
+-- @"C:\Script\Document\foo-bar.html"
 ```
 
 ### ディレクトリ単位で変換
 
-* Script
-  * Foo
-    * Bar.ms
-  * Hoge
-    * Piyo.ms
-
 ```maxscript
 (
   local dg = ::DocGeneratorStruct()
-  dg.FromDirectory @"C:\Script" recursive:true
+  dg.FromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
 )
 
 -- 出力先
-@"C:\Script\Document\foo-bar.html"
-@"C:\Script\Document\hoge-piyo.html"
+-- @"C:\Script\Document\foo-bar.html"
+-- @"C:\Script\Document\hoge-piyo.html"
 ```
 
 ### インデックス作成
@@ -87,11 +100,11 @@
 ```maxscript
 (
   local dg = ::DocGeneratorStruct()
-  dg.IndexFromDirectory @"C:\Script" recursive:true
+  dg.IndexFromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
 )
 
 -- 出力先
-@"C:\Script\Document\index.html"
+-- @"C:\Script\Document\index.html"
 ```
 
 ### 除外指定
@@ -103,8 +116,7 @@
     @"*\_*",
     @"*\test*",
     @"*\install.ms",
-    @"*\uninstall.ms",
-    @"*\unregister.ms"
+    @"*\uninstall.ms"
   )
   -- `ignore`の例外指定（必ず変換する）
   local exception = #(
@@ -123,7 +135,7 @@
 
 ```maxscript
 (
-  local options = ::DocOptionsStruct BasePath:@"..\"
+  local options = ::DocOptionsStruct BasePath:@"..\..\"
   local dg = ::DocGeneratorStruct options
 )
 ```
@@ -144,6 +156,10 @@
 | `SiteTitle`         | 全体のタイトル。既定値は`"mxsdoc"`。                                                                                                                            |
 | `SiteUrl`           | インデックスページのURL。既定値は`"index.html"`。                                                                                                               |
 | `TemplatePath`      | テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Resource\default-template.html"`。                                                                 |
+
+## 既知の不具合
+
+* インデックス作成の際に`BasePath`より上のディレクトリを指定した場合、ファイル名の変換処理が正しく行えずにエラーになる。
 
 ## ドキュメントコメント
 
