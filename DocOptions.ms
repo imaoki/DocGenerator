@@ -25,8 +25,8 @@ struct DocOptionsStruct (
   public SiteTitle = "mxsdoc",
   /*- @prop <String> インデックスページのURL。既定値は`"index.html"`。 */
   public SiteUrl = "index.html",
-  /*- @prop <String> テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Resource\default-template.html"`。 */
-  public TemplatePath = @".\Resource\default-template.html",
+  /*- @prop <String> テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Template\default-template.html"`。 */
+  public TemplatePath = @".\Template\default-template.html",
 
   /*- @returns <Name> */
   public fn StructName = #DocOptionsStruct,

@@ -155,7 +155,7 @@
 | `ShowError`         | 構文エラーをリスナーに出力する。                                                                                                                                |
 | `SiteTitle`         | 全体のタイトル。既定値は`"mxsdoc"`。                                                                                                                            |
 | `SiteUrl`           | インデックスページのURL。既定値は`"index.html"`。                                                                                                               |
-| `TemplatePath`      | テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Resource\default-template.html"`。                                                                 |
+| `TemplatePath`      | テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Template\default-template.html"`。                                                                 |
 
 ## 既知の不具合
 
