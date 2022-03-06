@@ -187,7 +187,6 @@
   assert (actual.Equals expected == true)
   -- ドキュメントコメントとカスタムアトリビュート
   actual = ::TestValueStruct (testObj.Parse "/*-hoge*/attributes Foo")
-  actual.Dump()
   expected = ::TestValueStruct (
     ::AstNodeStruct Type:#Document Value:#(
       ::AstNodeStruct Type:#SimpleDoc Value:#(
