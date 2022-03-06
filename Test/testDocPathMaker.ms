@@ -22,7 +22,7 @@
   local maxDir = pathUtility.GetDirectoryName scriptDir
 
   local defaultTemplateFile = pathUtility.GetFullPath @"..\Resource\default-template.html"
-  local indexFile = pathUtility.GetFullPath @"..\Document\index.html"
+  local indexFile = pathUtility.GetFullPath @"..\..\Document\index.html"
 
   local optionsDef = fileIn (pathUtility.GetFullPath @"..\DocOptions.ms")
 
@@ -38,7 +38,7 @@
   -- actual.Dump()
   expected = ::TestValueStruct (
     DataPair Source:currentFile Destination:(
-      docGeneratorDir + @"\Document\test-testdocpathmaker.html"
+      scriptDir + @"\Document\docgenerator-test-testdocpathmaker.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -62,13 +62,13 @@
   -- actual.Dump()
   expected = ::TestValueStruct #(
     DataPair Source:(dataDir + @"\FileA.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filea.html"
+      scriptDir + @"\Document\docgenerator-test-data-filea.html"
     ),
     DataPair Source:(dataDir + @"\FileB.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-fileb.html"
+      scriptDir + @"\Document\docgenerator-test-data-fileb.html"
     ),
     DataPair Source:(dataDir + @"\FileC.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filec.html"
+      scriptDir + @"\Document\docgenerator-test-data-filec.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -77,25 +77,25 @@
   -- actual.Dump()
   expected = ::TestValueStruct #(
     DataPair Source:(dataDir + @"\_DirA\FileD.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-_dira-filed.html"
+      scriptDir + @"\Document\docgenerator-test-data-_dira-filed.html"
     ),
     DataPair Source:(dataDir + @"\DirB\FileE.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filee.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filee.html"
     ),
     DataPair Source:(dataDir + @"\DirB\FileF.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filef.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filef.html"
     ),
     DataPair Source:(dataDir + @"\DirC\_FileG.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirc-_fileg.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirc-_fileg.html"
     ),
     DataPair Source:(dataDir + @"\FileA.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filea.html"
+      scriptDir + @"\Document\docgenerator-test-data-filea.html"
     ),
     DataPair Source:(dataDir + @"\FileB.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-fileb.html"
+      scriptDir + @"\Document\docgenerator-test-data-fileb.html"
     ),
     DataPair Source:(dataDir + @"\FileC.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filec.html"
+      scriptDir + @"\Document\docgenerator-test-data-filec.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -106,19 +106,19 @@
   -- actual.Dump()
   expected = ::TestValueStruct #(
     DataPair Source:(dataDir + @"\DirB\FileE.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filee.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filee.html"
     ),
     DataPair Source:(dataDir + @"\DirB\FileF.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filef.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filef.html"
     ),
     DataPair Source:(dataDir + @"\FileA.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filea.html"
+      scriptDir + @"\Document\docgenerator-test-data-filea.html"
     ),
     DataPair Source:(dataDir + @"\FileB.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-fileb.html"
+      scriptDir + @"\Document\docgenerator-test-data-fileb.html"
     ),
     DataPair Source:(dataDir + @"\FileC.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filec.html"
+      scriptDir + @"\Document\docgenerator-test-data-filec.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -132,16 +132,16 @@
   -- actual.Dump()
   expected = ::TestValueStruct #(
     DataPair Source:(dataDir + @"\DirB\FileE.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filee.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filee.html"
     ),
     DataPair Source:(dataDir + @"\DirB\FileF.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filef.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filef.html"
     ),
     DataPair Source:(dataDir + @"\FileB.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-fileb.html"
+      scriptDir + @"\Document\docgenerator-test-data-fileb.html"
     ),
     DataPair Source:(dataDir + @"\FileC.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filec.html"
+      scriptDir + @"\Document\docgenerator-test-data-filec.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -152,22 +152,22 @@
   -- actual.Dump()
   expected = ::TestValueStruct #(
     DataPair Source:(dataDir + @"\DirB\FileE.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filee.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filee.html"
     ),
     DataPair Source:(dataDir + @"\DirB\FileF.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirb-filef.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirb-filef.html"
     ),
     DataPair Source:(dataDir + @"\DirC\_FileG.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-dirc-_fileg.html"
+      scriptDir + @"\Document\docgenerator-test-data-dirc-_fileg.html"
     ),
     DataPair Source:(dataDir + @"\FileA.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filea.html"
+      scriptDir + @"\Document\docgenerator-test-data-filea.html"
     ),
     DataPair Source:(dataDir + @"\FileB.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-fileb.html"
+      scriptDir + @"\Document\docgenerator-test-data-fileb.html"
     ),
     DataPair Source:(dataDir + @"\FileC.ms") Destination:(
-      docGeneratorDir + @"\Document\test-data-filec.html"
+      scriptDir + @"\Document\docgenerator-test-data-filec.html"
     )
   )
   assert (actual.Equals expected == true)
@@ -193,7 +193,7 @@
   -- 既定値
   testObj = testDef()
   actual = ::TestValueStruct (testObj.GetAbsoluteBasePath())
-  expected = ::TestValueStruct docGeneratorDir
+  expected = ::TestValueStruct scriptDir
   assert (actual.Equals expected == true)
   -- 下位ディレクトリを指定
   testObj = testDef (optionsDef BasePath:@".\Test")
@@ -213,12 +213,12 @@
   /* ベースパスの変更 */
   testObj = testDef()
   actual = ::TestValueStruct (testObj.GetAbsoluteBasePath())
-  expected = ::TestValueStruct docGeneratorDir
+  expected = ::TestValueStruct scriptDir
   assert (actual.Equals expected == true)
   -- 上位ディレクトリ
-  testObj.Options.BasePath = @"..\"
+  testObj.Options.BasePath = @"..\..\"
   actual = ::TestValueStruct (testObj.GetAbsoluteBasePath())
-  expected = ::TestValueStruct scriptDir
+  expected = ::TestValueStruct maxDir
   assert (actual.Equals expected == true)
   /* 末尾バックスラッシュ */
   testObj = testDef (optionsDef BasePath:(currentDir + @"\"))

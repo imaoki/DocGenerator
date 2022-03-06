@@ -3,8 +3,8 @@
 ドキュメントのHTMLファイル化に必要なプロパティを格納する構造体。
 */
 struct DocOptionsStruct (
-  /*- @prop <String> 検索の基点になるディレクトリの絶対パスまたは相対パス。既定値は`@".\"`。 */
-  public BasePath = @".\",
+  /*- @prop <String> 検索の基点になるディレクトリの絶対パスまたは相対パス。既定値は`@"..\"`。 */
+  public BasePath = @"..\",
   /*- @prop <String> 更新日に使用する[日時書式指定文字列](https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/custom-date-and-time-format-strings)。既定値は`"yyyy-MM-dd"`。 */
   public DateFormat = "yyyy-MM-dd",
   /*- @prop <String> 自動リンクに使用する.NET APIブラウザのベースURL。既定値は`"https://docs.microsoft.com/ja-jp/dotnet/api/"`。 */
