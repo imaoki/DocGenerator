@@ -533,7 +533,7 @@ struct DocRenderStruct (
 
   on Create do (
     if not this.isDocOptions this.Options do (
-      this.Options = (fileIn "DocOptions.ms")()
+      this.Options = (fileIn @"DocOptions.ms")()
     )
     this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.spaceRegex = ::std.StringUtility.CreateRegex "^ +"

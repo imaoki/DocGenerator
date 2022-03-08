@@ -264,13 +264,13 @@ struct DocGeneratorStruct (
 
   on Create do (
     if not this.isDocOptions this.Options do (
-      this.Options = (fileIn "DocOptions.ms")()
+      this.Options = (fileIn @"DocOptions.ms")()
     )
     this.docDependentParser = (fileIn @"Parser\DocDependent.ms") ShowError:this.Options.ShowError
-    this.docDependentTable = (fileIn "DocDependentTable.ms")()
+    this.docDependentTable = (fileIn @"DocDependentTable.ms")()
     this.docParser = (fileIn @"Parser\Doc.ms") ShowError:this.Options.ShowError
-    this.docRender = (fileIn "DocRender.ms") this.Options
-    this.pathMaker = (fileIn "DocPathMaker.ms") this.Options
+    this.docRender = (fileIn @"DocRender.ms") this.Options
+    this.pathMaker = (fileIn @"DocPathMaker.ms") this.Options
     this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
   )
 )

@@ -505,9 +505,9 @@ struct DocStruct (
   on Create do (
     local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = ::ParserCombinatorStruct()
-    this.docCommentParser = (fileIn "DocComment.ms") ShowError:this.ShowError
-    this.pathNameLiteralParser = (fileIn "PathNameLiteral.ms") ShowError:this.ShowError
-    this.stringLiteralParser = (fileIn "StringLiteral.ms") ShowError:this.ShowError
+    this.docCommentParser = (fileIn @"DocComment.ms") ShowError:this.ShowError
+    this.pathNameLiteralParser = (fileIn @"PathNameLiteral.ms") ShowError:this.ShowError
+    this.stringLiteralParser = (fileIn @"StringLiteral.ms") ShowError:this.ShowError
     this.parser = this.program()
   )
 )
