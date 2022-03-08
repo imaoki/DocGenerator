@@ -52,6 +52,8 @@
 
 02. `Distribution\DocGenerator.min.ms`を実行する。
 
+    `Distribution\Template`ディレクトリは`DocGenerator.min.ms`と同じディレクトリに配置する。
+
 ## 使い方
 
 ここでは以下のディレクトリ構造を前提として進める。
