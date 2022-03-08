@@ -26,6 +26,8 @@ struct DocRenderStruct (
 
   /*- @prop <String> テンプレートHTMLが使用できない場合に使用する既定のテンプレートHTMLコード。 */
   private defaultTemplate = "<!doctype html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>{{{site.title}}}</title>\n</head>\n<body>\n<h1><a href=\"{{{site.url}}}\">{{{site.title}}}</a></h1>\n<h2>{{{doc.title}}}</h2>\n{{{doc.toc}}}\n{{{doc.content}}}\n</body>\n</html>\n",
+  /*- @prop <Struct:MarkdownStruct> */
+  private markdown,
   /*- @prop <Struct:PathUtilityStruct> */
   private pathUtility,
   /*- @prop <DotNetObject:System.Text.RegularExpressions.Regex> `(?<=\n) +`に一致する正規表現オブジェクト。 */
@@ -271,8 +273,8 @@ struct DocRenderStruct (
         )
         (#Text): (
           local markdownText = this.adjustIndent n.Value
-          if this.markdownDefines() then (
-            format "%" (::markdown.ToHtml markdownText) to:out
+          if this.isValidMarkdown this.markdown then (
+            format "%" (this.markdown.ToHtml markdownText) to:out
           )
           else (
             format "<pre class=\"markdown\"><code class=\"language-markdown\">" to:out
@@ -407,15 +409,14 @@ struct DocRenderStruct (
   ),
 
   /*-
-  グローバル変数`::markdown`が定義されているかどうかを判定する。
+  @param obj <Any>
   @returns <BooleanClass>
   */
-  private fn markdownDefines = (
-    GlobalVars.IsGlobal "markdown" \
-        and isStruct ::markdown \
-        and isProperty ::markdown #StructName \
-        and classOf ::markdown.StructName == MAXScriptFunction \
-        and ::markdown.StructName() == #MarkdownStruct
+  private fn isValidMarkdown obj = (
+    isStruct obj \
+        and isProperty obj #StructName \
+        and classOf obj.StructName == MAXScriptFunction \
+        and obj.StructName() == #MarkdownStruct
   ),
 
   /*-
@@ -535,6 +536,7 @@ struct DocRenderStruct (
     if not this.isDocOptions this.Options do (
       this.Options = (fileIn @"DocOptions.ms")()
     )
+    this.markdown = ::MarkdownStruct()
     this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.spaceRegex = ::std.StringUtility.CreateRegex "^ +"
   )
