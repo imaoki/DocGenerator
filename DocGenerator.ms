@@ -19,6 +19,20 @@ struct DocGeneratorStruct (
   /*- @prop <Struct:PathUtilityStruct> */
   private pathUtility,
 
+  /*
+  public fn FromDirectory dir recursive:false ignore: exception: = (),
+  public fn FromFile file = (),
+  public fn IndexFromDirectory dir recursive:false ignore: exception: = (),
+
+  private fn compareFileName a b = (),
+  private fn convertFile path = (),
+  private fn dumpPathTree pathTree indent = (),
+  private fn extractDependent path = (),
+  private fn isDocOptions obj = (),
+  private fn makePathTree parentPath paths = (),
+  private fn pathTreeToHtml pathTree = (),
+  */
+
   /*-
   ディレクトリ内のスクリプトファイルを変換する。
   @param dir <String> ディレクトリの絶対パス。

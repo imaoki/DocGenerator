@@ -18,6 +18,18 @@ struct DocPathMakerStruct (
   /*- @prop <DotNetClass:System.Uri> */
   private uriClass = DotNetClass "System.Uri",
 
+  /*
+  public fn FromDirectory dir recursive:false ignore: exception: = (),
+  public fn FromFile file = (),
+  public fn GetAbsoluteBasePath = (),
+  public fn GetAbsoluteIndexPath = (),
+  public fn GetAbsoluteTemplatePath = (),
+
+  private fn isDocOptions obj = (),
+  private fn matchPatterns input patterns = (),
+  private fn trimEndBackslash input = (),
+  */
+
   /*-
   ディレクトリ内のスクリプトファイルのパスから変換後のHTMLファイルのパスを作成する。
   @param dir <String> ディレクトリの絶対パス。

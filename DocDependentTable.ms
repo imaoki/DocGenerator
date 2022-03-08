@@ -16,6 +16,14 @@ struct DocDependentTableStruct (
   */
   private dependentTable,
 
+  /*
+  public fn AddDependent astNode path = (),
+  public fn GetDependent path = (),
+  public fn Initialize = (),
+
+  private fn isAstNode obj = (),
+  */
+
   /*-
   構文木の内容をそれぞれのテーブルに振り分ける。
   @param astNode <Struct:AstNodeStruct|Struct:NotCollectStruct>

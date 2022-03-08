@@ -35,6 +35,25 @@ struct DocRenderStruct (
   /*- @prop <DotNetClass:System.Uri> */
   private uriClass = DotNetClass "System.Uri",
 
+  /*
+  public fn Render astNode docTitle:"Untitled" dependent: = (),
+  public fn RenderIndex docContent = (),
+
+  private fn adjustIndent input indent:"  " = (),
+  private fn dependentToHtml dependent = (),
+  private fn docCommentToHtml n dependent = (),
+  private fn docToHtml n h dependent = (),
+  private fn generateNowDate = (),
+  private fn isAstNode obj = (),
+  private fn isDocOptions obj = (),
+  private fn isValidDependent obj = (),
+  private fn isValidMarkdown obj = (),
+  private fn readTemplate = (),
+  private fn sanitize input = (),
+  private fn writeTocBorderTag n i = (),
+  private fn writeTocEndTag n i = (),
+  */
+
   /*-
   構文木からHTMLコードを生成する。
   @param astNode <Struct:AstNodeStruct> パース結果の構文木。
