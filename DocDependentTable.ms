@@ -116,8 +116,9 @@ struct DocDependentTableStruct (
       local v = this.declarationTable[key]
       format "%    [\"%\"]:%\n" indent key v.Count to:out
       for i = 1 to v.Count do (
-        format "%      [%]:@\"%\"\n" \
-            indent i (::std.StringUtility.EscapeBackslash v[i]) to:out
+        format "%      [%]:\n" indent i to:out
+        format "%             Source:@\"%\"\n" indent (::std.StringUtility.EscapeBackslash v[i].Source) to:out
+        format "%        Destination:@\"%\"\n" indent (::std.StringUtility.EscapeBackslash v[i].Destination) to:out
       )
     )
 
