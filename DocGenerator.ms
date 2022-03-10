@@ -1,4 +1,5 @@
 /*! © 2022 imaoki | MIT License | https://github.com/imaoki */
+fileIn @"definitionPool.ms"
 /*-
 スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。
 */
@@ -278,13 +279,13 @@ struct DocGeneratorStruct (
 
   on Create do (
     if not this.isDocOptions this.Options do (
-      this.Options = (fileIn @"DocOptions.ms")()
+      this.Options = (::docGeneratorDefinitionPool[@"DocOptions.ms"])()
     )
-    this.docDependentParser = (fileIn @"Parser\DocDependent.ms") ShowError:this.Options.ShowError
-    this.docDependentTable = (fileIn @"DocDependentTable.ms")()
-    this.docParser = (fileIn @"Parser\Doc.ms") ShowError:this.Options.ShowError
-    this.docRender = (fileIn @"DocRender.ms") this.Options
-    this.pathMaker = (fileIn @"DocPathMaker.ms") this.Options
+    this.docDependentParser = (::docGeneratorDefinitionPool[@"Parser\DocDependent.ms"]) ShowError:this.Options.ShowError
+    this.docDependentTable = (::docGeneratorDefinitionPool[@"DocDependentTable.ms"])()
+    this.docParser = (::docGeneratorDefinitionPool[@"Parser\Doc.ms"]) ShowError:this.Options.ShowError
+    this.docRender = (::docGeneratorDefinitionPool[@"DocRender.ms"]) this.Options
+    this.pathMaker = (::docGeneratorDefinitionPool[@"DocPathMaker.ms"]) this.Options
     this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())
   )
 )

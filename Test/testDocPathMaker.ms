@@ -24,6 +24,7 @@
   local defaultTemplateFile = pathUtility.GetFullPath @"..\Template\default-template.html"
   local indexFile = pathUtility.GetFullPath @"..\..\Document\index.html"
 
+  fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
   local optionsDef = fileIn (pathUtility.GetFullPath @"..\DocOptions.ms")
 
   testDef = fileIn (pathUtility.GetFullPath @"..\DocPathMaker.ms")

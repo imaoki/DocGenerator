@@ -553,7 +553,7 @@ struct DocRenderStruct (
 
   on Create do (
     if not this.isDocOptions this.Options do (
-      this.Options = (fileIn @"DocOptions.ms")()
+      this.Options = (::docGeneratorDefinitionPool[@"DocOptions.ms"])()
     )
     this.markdown = ::MarkdownStruct()
     this.pathUtility = ::std.PathUtilityStruct (getSourceFileName())

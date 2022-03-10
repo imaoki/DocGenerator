@@ -51,6 +51,7 @@
     )
   )
 
+  fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
   testDef = fileIn (pathUtility.GetFullPath @"..\DocDependentTable.ms")
   testObj = testDef()
   /* Setup End -------------------------------------------------------------- */

@@ -19,6 +19,7 @@
   local notCollect = ::NotCollectStruct()
   local code
 
+  fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   testDef = fileIn (pathUtility.GetFullPath @"..\PathNameLiteral.ms")
   testObj = testDef ShowError:false
   /* Setup End -------------------------------------------------------------- */

@@ -19,6 +19,7 @@
   local failure = ::FailureStruct()
   local notCollect = ::NotCollectStruct()
 
+  fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   testDef = fileIn (pathUtility.GetFullPath @"..\DocDependent.ms")
   testObj = testDef ShowError:false
   /* Setup End -------------------------------------------------------------- */

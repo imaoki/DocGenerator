@@ -18,6 +18,7 @@
   local code
   local templatePath = pathUtility.GetFullPath @".\Data\test-template.html"
 
+  fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
   local docDef = fileIn (pathUtility.GetFullPath @"..\Parser\Doc.ms")
   local docDependentTableDef = fileIn (pathUtility.GetFullPath @"..\DocDependentTable.ms")
   local optionsDef = fileIn (pathUtility.GetFullPath @"..\DocOptions.ms")
