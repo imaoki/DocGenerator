@@ -24,7 +24,7 @@
   local testDocDir = pathUtility.GetFullPath @".\TestDoc"
 
   fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
-  local optionsDef = fileIn (pathUtility.GetFullPath @"..\DocOptions.ms")
+  local optionsDef = ::docGeneratorDefinitionPool[@"DocOptions.ms"]
 
   local options = optionsDef \
       BasePath:@".\Test" \

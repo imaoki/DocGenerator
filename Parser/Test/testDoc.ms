@@ -20,7 +20,7 @@
   local notCollect = ::NotCollectStruct()
 
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
-  testDef = fileIn (pathUtility.GetFullPath @"..\Doc.ms")
+  testDef = ::docGeneratorDefinitionPool[@"Parser\Doc.ms"]
   testObj = testDef ShowError:false
   /* Setup End -------------------------------------------------------------- */
   sw.Start()

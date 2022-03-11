@@ -52,7 +52,7 @@
   )
 
   fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
-  testDef = fileIn (pathUtility.GetFullPath @"..\DocDependentTable.ms")
+  testDef = ::docGeneratorDefinitionPool[@"DocDependentTable.ms"]
   testObj = testDef()
   /* Setup End -------------------------------------------------------------- */
   sw.Start()

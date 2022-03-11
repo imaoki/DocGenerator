@@ -19,9 +19,9 @@
   local templatePath = pathUtility.GetFullPath @".\Data\test-template.html"
 
   fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
-  local docDef = fileIn (pathUtility.GetFullPath @"..\Parser\Doc.ms")
-  local docDependentTableDef = fileIn (pathUtility.GetFullPath @"..\DocDependentTable.ms")
-  local optionsDef = fileIn (pathUtility.GetFullPath @"..\DocOptions.ms")
+  local docDef = ::docGeneratorDefinitionPool[@"Parser\Doc.ms"]
+  local docDependentTableDef = ::docGeneratorDefinitionPool[@"DocDependentTable.ms"]
+  local optionsDef = ::docGeneratorDefinitionPool[@"DocOptions.ms"]
 
   local pathA = DataPair Source:@"C:\Test\A.ms" Destination:@"C:\Test\Document\a.html"
   local pathB = DataPair Source:@"C:\Test\B.ms" Destination:@"C:\Test\Document\b.html"
@@ -89,7 +89,7 @@
     ok
   )
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\DocRender.ms")
+  testDef = ::docGeneratorDefinitionPool[@"DocRender.ms"]
   testObj = testDef options
   /* Setup End -------------------------------------------------------------- */
   sw.Start()

@@ -20,7 +20,7 @@
   local code
 
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
-  testDef = fileIn (pathUtility.GetFullPath @"..\StringLiteral.ms")
+  testDef = ::docGeneratorDefinitionPool[@"Parser\StringLiteral.ms"]
   testObj = testDef ShowError:false
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
