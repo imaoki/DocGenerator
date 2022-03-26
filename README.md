@@ -1,34 +1,45 @@
 # DocGenerator
 
-スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。
+Generate HTML files based on documentation comments in script files.
+<!-- スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。 -->
 
-## 特徴
+## Features
+<!-- 特徴 -->
 
-* Javadocライクな構文。
+* Explanations can be written in Markdown.
+  <!-- 解説をMarkdownで記述可能。 -->
 
-* 解説をMarkdownで記述可能。
+* Extraction and automatic linking of dependent files.[^1]
+  <!-- 依存ファイルの抽出と自動リンク。 -->
 
-* 依存ファイルの抽出と自動リンク。[^1]
+* Automatic linking of .NET classes.[^2]
+  <!-- .NETクラスの自動リンク。 -->
 
-* .NETクラスの自動リンク。[^2]
+* Automatic TOC generation. (start at h3)
+  <!-- TOC自動生成。（h3から開始） -->
 
-* TOC自動生成。（h3から開始）
+* Supports conversion of single files and directory units.
+  <!-- 単一ファイル、およびディレクトリ単位での変換に対応。 -->
 
-* 単一ファイル、およびディレクトリ単位での変換に対応。
+* The encoding of the script file can be specified.
+  <!-- スクリプトファイルのエンコーディングを指定可能。 -->
 
-* スクリプトファイルのエンコーディングを指定可能。
+* Any template file can be specified.
+  <!-- 任意のテンプレートファイルを指定可能。 -->
 
-* 任意のテンプレートファイルを指定可能。
+[^1]: Valid only for per-directory conversions.
+<!-- ディレクトリ単位の変換でのみ有効。 -->
 
-[^1]: ディレクトリ単位の変換でのみ有効。
+[^2]: Currently, only dependent variables are automatically linked, and variables that are not directly dependent are not linked.
+<!-- 現状自動リンクされるのは依存している変数のみで直接依存していない変数はリンクされない。 -->
 
-[^2]: 現状自動リンクされるのは依存している変数のみで直接依存していない変数はリンクされない。
-
-## サンプル
+## Examples
+<!-- 例 -->
 
 [mxsdoc](https://imaoki.github.io/mxskb/mxsdoc/)
 
-## 要件
+## Requirements
+<!-- 要件 -->
 
 * [imaoki/Markdown](https://github.com/imaoki/Markdown)
 
@@ -36,31 +47,43 @@
 
 * [imaoki/Standard](https://github.com/imaoki/Standard)
 
-## 動作確認
+## Development Environment
+<!-- 開発環境 -->
 
 `2022.3 Update`
 
-## スクリプトの実行
+## Running Scripts
+<!-- スクリプトを実行する -->
 
-01. 依存スクリプトがある場合は予めインストールしておく。
+01. Dependent scripts should be installed beforehand.
+    <!-- 依存スクリプトは予めインストールしておく。 -->
 
-02. （任意）`DocOptions.ms`を実行する。
+02. (Optional) Run `DocOptions.ms`.
+    <!-- （任意）`DocOptions.ms`を実行する。 -->
 
-03. `DocGenerator.ms`を実行する。
+03. Run `DocGenerator.ms`.
+    <!-- `DocGenerator.ms`を実行する。 -->
 
-## スタンドアローン版
+## Standalone version
+<!-- スタンドアローン版 -->
 
-### スクリプトの実行
+### Running Scripts
+<!-- スクリプトを実行する -->
 
-01. 依存スクリプトがある場合は予めインストールしておく。
+01. Dependent scripts should be installed beforehand.
+    <!-- 依存スクリプトは予めインストールしておく。 -->
 
-02. `Distribution\DocGenerator.min.ms`を実行する。
+02. Execute `Distribution\DocGenerator.min.ms`.
+    <!-- `Distribution\DocGenerator.min.ms`を実行する。 -->
 
-    `Distribution\Template`ディレクトリは`DocGenerator.min.ms`と同じディレクトリに配置する。
+    Place the `Distribution\Template` directory in the same directory as the `DocGenerator.min.ms` directory.
+    <!-- `Distribution\Template`ディレクトリは`DocGenerator.min.ms`と同じディレクトリに配置する。 -->
 
-## 使い方
+## Usage
+<!-- 使い方 -->
 
-ここでは以下のディレクトリ構造を前提として進める。
+The following directory structure is assumed here.
+<!-- ここでは以下のディレクトリ構造を前提とする。 -->
 
 * Script
 
@@ -74,9 +97,11 @@
 
     * Piyo.ms
 
-既定では`DocGenerator`ディレクトリを基準としたファイル名でファイルが生成される。
+By default, the file name is relative to the directory where the `DocGenerator` directory is located.
+<!-- 既定では`DocGenerator`ディレクトリを配置したディレクトリを基準とした相対パスがファイル名になる。 -->
 
-### 単一ファイルを変換
+### Convert single file
+<!-- 単一ファイルを変換 -->
 
 ```maxscript
 (
@@ -84,11 +109,12 @@
   dg.FromFile @"C:\Script\Foo\Bar.ms"
 )
 
--- 出力先
+-- output destination
 -- @"C:\Script\Document\foo-bar.html"
 ```
 
-### ディレクトリ単位で変換
+### Directory conversion
+<!-- ディレクトリ単位で変換 -->
 
 ```maxscript
 (
@@ -96,12 +122,13 @@
   dg.FromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
 )
 
--- 出力先
+-- output destination
 -- @"C:\Script\Document\foo-bar.html"
 -- @"C:\Script\Document\hoge-piyo.html"
 ```
 
-### インデックス作成
+### Create index file
+<!-- インデックスファイルを作成 -->
 
 ```maxscript
 (
@@ -109,22 +136,23 @@
   dg.IndexFromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
 )
 
--- 出力先
+-- output destination
 -- @"C:\Script\Document\index.html"
 ```
 
-### 除外指定
+### Exclusion
+<!-- 除外指定 -->
 
 ```maxscript
 (
-  -- 無視するファイル
+  -- Files to ignore
   local ignore = #(
     @"*\_*",
     @"*\test*",
     @"*\install.ms",
     @"*\uninstall.ms"
   )
-  -- `ignore`の例外指定（必ず変換する）
+  -- Exception specification for `ignore` (must be converted)
   local exception = #(
     @"*\TestValue\TestValue.ms"
   )
@@ -135,9 +163,10 @@
 )
 ```
 
-### オプション
+### Options
 
-`DocOptionsStruct`を使用してオプションの指定が可能。
+Options can be specified using `DocOptionsStruct`.
+<!-- `DocOptionsStruct`を使用してオプションの指定が可能。 -->
 
 ```maxscript
 (
@@ -146,251 +175,191 @@
 )
 ```
 
-#### オプション一覧
+See [mxsdoc.DocOptions.ms](https://imaoki.github.io/mxskb/mxsdoc/docgenerator-docoptions.html) for details.
+<!-- 詳細は[mxsdoc.DocOptions.ms](https://imaoki.github.io/mxskb/mxsdoc/docgenerator-docoptions.html)を参照。 -->
 
-| プロパティ          | 説明                                                                                                                                                            |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BasePath`          | 検索の基点になるディレクトリの絶対パスまたは相対パス。既定値は`@".\"`。                                                                                         |
-| `DateFormat`        | 更新日に使用する[日時書式指定文字列](https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/custom-date-and-time-format-strings)。既定値は`"yyyy-MM-dd"`。 |
-| `DotNetApiBaseUrl`  | 自動リンクに使用する.NET APIブラウザのベースURL。既定値は`"https://docs.microsoft.com/ja-jp/dotnet/api/"`。                                                     |
-| `DotNetApiVersion`  | 自動リンクに使用する.NET APIブラウザのバージョン。既定値は`"netframework-4.8"`。                                                                                |
-| `EncodingBom`       | UTF-8エンコーディングのBOMの有無。既定値は`false`。                                                                                                             |
-| `EncodingName`      | スクリプトファイルのエンコーディングの名前。既定値は`"utf-8"`                                                                                                   |
-| `FileNameSeparator` | HTMLファイル名のセパレータ。既定値は`"-"`。                                                                                                                     |
-| `SaveDirectoryName` | HTMLファイルの保存先ディレクトリ名。既定値は`"Document"`。                                                                                                      |
-| `ShowError`         | 構文エラーをリスナーに出力する。                                                                                                                                |
-| `SiteTitle`         | 全体のタイトル。既定値は`"mxsdoc"`。                                                                                                                            |
-| `SiteUrl`           | インデックスページのURL。既定値は`"index.html"`。                                                                                                               |
-| `TemplatePath`      | テンプレートHTMLファイルの絶対パスまたは相対パス。既定値は`@"Template\default-template.html"`。                                                                 |
+## Known Issues
+<!-- 既知の問題 -->
 
-## 既知の不具合
+* If a directory higher than `BasePath` is specified when creating an index file, the file name conversion process will not work correctly and an error will occur.
+  <!-- インデックスファイル作成の際に`BasePath`より上のディレクトリを指定した場合、ファイル名の変換処理が正しく行えずにエラーになる。 -->
 
-* インデックス作成の際に`BasePath`より上のディレクトリを指定した場合、ファイル名の変換処理が正しく行えずにエラーになる。
+## Syntax of documentation comments
+<!-- ドキュメントコメントの構文 -->
 
-## ドキュメントコメント
+Comments written in the following sequence will be documented.
+<!-- 下記の並びで記述されたコメントがドキュメント化される。 -->
 
-下記の並びに該当するコメントがドキュメント化される。
+01. Comments with "/*-" as a start sign
+    <!-- 開始記号が"/*-"のコメント -->
 
-```
-開始記号が"/*-"のブロックコメント
-予約キーワード（0個以上）
-変数名
-```
+02. Reserved keywords (0 or more)
+    <!-- 予約キーワード（0個以上） -->
 
-### 最小パターン
+03. Variable name
+    <!-- 変数名 -->
+
+### Minimum pattern
+<!-- 最小パターン -->
 
 ```maxscript
-/*-コメント*/
+/*-Comment*/
 var
 ```
 
-### 様々なパターン
+### Various patterns
+<!-- 様々なパターン -->
 
-```maxscript
-/*-
-構造体。
-@var <ClassName> 変数。
-@prop <ClassName> プロパティ。
-@prop <ClassName>
-@param param <ClassName> 位置パラメータ。
-@returns <OkClass> 戻り値。
-@remarks 補足説明。
-*/
-struct TestStruct (
-  /*- プロパティ。 */
-  public TestProperty,
+* `Parser\Test\Data\docCommentExample.ms`
 
-  /*-
-  メソッドA。
-  @param positional <ClassName> 位置パラメータ。
-  @param &referenceParam <ClassName> 参照パラメータ。
-  @param keywordParam: <ClassName> キーワードパラメータ。
-  @param &keywordReferenceParam: <ClassName> キーワード参照パラメータ。
-  @param &'quoted name': <ClassName> 引用符で囲まれた名前。
-  */
-  public fn TestMethod_A = (
-    /*-
-    ローカル関数
-    */
-    fn localFunction = ()
+* `Parser\Test\Data\docExample.ms`
 
-    /*- ローカル変数 */
-    local localVariable
+### Components of documentation comments
+<!-- ドキュメントコメントの構成要素 -->
 
-    -- グローバル変数
-    ::FooStruct
-    ::foo
-    ::bar
-  ),
+#### Text
+<!-- テキスト -->
 
-  /*-
-  メソッドB。
-  @prop <Foo> 基本。
-  @prop <Foo.Bar> プロパティまたは名前空間。
-  @prop <Foo:Bar> 定義。
-  @prop <Foo:Bar.Baz.Hoge> 定義とプロパティ。
-  @prop <Foo|Bar> 複数のクラス。
-  @prop <Foo[<Bar[<Baz>]>]> ネスト。
-  @prop <Foo <Bar> Param:<Baz>> コンストラクタ。
-  @prop <Struct:FooStruct> 依存リンク。
-  */
-  public fn TestMethod_B = (),
+* Markdown text at the beginning of a comment or at the end of a tag.
+  <!-- コメントの冒頭、またはタグの末尾にあるMarkdownテキスト。 -->
 
-  /*-
-  メソッドC。
-  @param param1 <Integer> 位置パラメータ。
-  @param param2 <Name> 位置パラメータ。
-  @param &param3 <String> 参照パラメータ。
-  @param param4: <Array[<DataPair Name:<String> Value:<Any>>]> キーワードパラメータ。
+* [CommonMark](https://commonmark.org/) compliant.
+  <!-- [CommonMark](https://commonmark.org/)準拠。 -->
 
-  `Name`
-  : 名前。
+* Pipe tables and definition lists are available.
+  <!-- パイプテーブル、定義リストが使用可能。 -->
 
-  `Value`
-  : 値。
+#### Tag
+<!-- タグ -->
 
-    ```maxscript
-    getHashValue "Hello World" 17
-    ```
-  @param &param5: <Name> キーワード参照パラメータ。
+The following types of tags are available
+<!-- 以下の種類のタグが使用可能。 -->
 
-  | 値     | 説明 |
-  | ------ | ---- |
-  | `#Foo` | ほげ |
-  | `#Bar` | ぴよ |
-  @returns <OkClass> 戻り値。
-  @remarks 補足説明。
-  */
-  public fn TestMethod_C = (),
+| Tag        | Use                       |
+| ---------- | ------------------------- |
+| `@var`     | Variable                  |
+| `@prop`    | Structure property        |
+| `@param`   | Function parameters       |
+| `@returns` | Return value of function  |
+| `@remarks` | Supplementary explanation |
 
-  on Create do ()
-)
-```
-
-### ドキュメントコメントの構成要素
-
-#### テキスト
-
-* コメントの冒頭、またはタグの末尾にあるMarkdownテキスト。
-
-* [CommonMark](https://commonmark.org/)準拠。
-
-* パイプテーブル、定義リストが使用可能。
-
-#### タグ
-
-以下の種類のタグが使用可能。
-
-| タグ       | 用途                         |
-| ---------- | ---------------------------- |
-| `@var`     | グローバル変数やローカル変数 |
-| `@prop`    | 構造体プロパティ             |
-| `@param`   | 関数やメソッドのパラメータ   |
-| `@returns` | 関数やメソッドの戻り値       |
-| `@remarks` | 補足説明                     |
-
-##### 変数
+##### Variable
+<!-- 変数 -->
 
 ```
-@var <型表記> テキスト（オプション）
+@var <ClassForm> Text(Optional)
 ```
 
-##### プロパティ
+##### Property
+<!-- プロパティ -->
 
 ```
-@prop <型表記> テキスト（オプション）
+@prop <ClassForm> Text(Optional)
 ```
 
-##### パラメータ
+##### Parameter
+<!-- パラメータ -->
 
 ```
-@param パラメータ名 <型表記> テキスト（オプション）
+@param ParameterName <ClassForm> Text(Optional)
 ```
 
-##### 戻り値
+##### Return value
+<!-- 戻り値 -->
 
 ```
-@returns <型表記> テキスト（オプション）
+@returns <ClassForm> Text(Optional)
 ```
 
-##### 補足
+##### Supplementary information
+<!-- 補足情報 -->
 
 ```
-@remarks テキスト（オプション）
+@remarks Text(Optional)
 ```
 
-#### 型表記
+#### ClassForm
+<!-- クラス形式 -->
 
-型を表現するための記法。`<>`で囲んで表記する。
-
-```
-<型宣言>
-```
-
-##### 複数の候補
-
-複数の型を取りうる場合は`|`で区切って表記する。
+Notation for expressing types. The notation is enclosed in `<>`.
+<!-- 型を表現するための記法。`<>`で囲んで表記する。 -->
 
 ```
--- `|`以降は0回以上の繰り返し
-<型宣言|型宣言>
+<ClassCeclaration>
 ```
 
-##### 型宣言の種類
+##### Multiple candidates
+<!-- 複数の候補 -->
 
-| 名称           | 用途                                          |
-| -------------- | --------------------------------------------- |
-| コンストラクタ | `DataPair`や`Dictionary`等の複合型            |
-| アクセサ       | 配列                                          |
-| クラス定義     | 構造体や`DotNetClass`                         |
-| クラス名       | 単一のクラス名、または`.`区切りの階層的な構造 |
-
-###### コンストラクタ
+If the type can be more than one, separate them with `|`.
+<!-- 複数の型を取りうる場合は`|`で区切って表記する。 -->
 
 ```
--- 位置パラメータ（1回以上の繰り返し）
-<変数名 <型表記>>
-
--- キーワードパラメータ（1回以上の繰り返し）
-<変数名 パラメータ名:<型表記>>
+<ClassCeclaration|ClassCeclaration>
 ```
 
-###### アクセサ
+##### ClassDeclaration types
+<!-- クラス宣言の種類 -->
+
+| Name            | Use                                                          |
+| --------------- | ------------------------------------------------------------ |
+| Constructor     | Composite types such as `DataPair` and `Dictionary           |
+| Accessor        | Array                                                        |
+| ClassDefinition | Structure or `DotNetClass`                                   |
+| ClassName       | Single class name or hierarchical structure separated by `.` |
+
+###### Constructor
+
+* Positional parameter (one or more repetitions)
+
+  ```
+  <VariableName <ClassForm>>
+  ```
+
+* Keyword parameter (one or more repetitions)
+
+  ```
+  <VariableName ParameterName:<ClassForm>>
+  ```
+
+###### Accessor
 
 ```
-<Array[<型表記>]>
+<Array[<ClassForm>]>
 ```
 
-###### クラス定義
+###### ClassDefinition
 
 ```
-<変数名:クラス名>
+<VariableName:ClassName>
 ```
 
-| 型の種類                             | 変数名                     |
-| ------------------------------------ | -------------------------- |
-| 構造体定義                           | `<StructDef:クラス名>`     |
-| 構造体インスタンス                   | `<Struct:クラス名>`        |
-| 型が不明な構造体定義                 | `<StructDef>`              |
-| 型が不明な構造体インスタンス         | `<Struct>`                 |
-| アトリビュート定義                   | `<AttributeDef:クラス名>`  |
-| アトリビュートインスタンス           | `<Attribute:クラス名>`     |
-| 型が不明なアトリビュート定義         | `<AttributeDef>`           |
-| 型が不明なアトリビュートインスタンス | `<Attribute>`              |
-| 参照値                               | `<ValueRef:クラス名>`      |
-| `DotNetClass`                        | `<DotNetClass:クラス名>`   |
-| `DotNetControl`                      | `<DotNetControl:クラス名>` |
-| `DotNetObject`                       | `<DotNetObject:クラス名>`  |
+| Type                                 | VariableName                |
+| ------------------------------------ | --------------------------- |
+| Structure definition                 | `<StructDef:ClassName>`     |
+| Structure instance                   | `<Struct:ClassName>`        |
+| Structure definition of unknown type | `<StructDef>`               |
+| Structure instance of unknown type   | `<Struct>`                  |
+| Attribute definition                 | `<AttributeDef:ClassName>`  |
+| Attribute instance                   | `<Attribute:ClassName>`     |
+| Attribute definition of unknown type | `<AttributeDef>`            |
+| Attribute instance of unknown type   | `<Attribute>`               |
+| Reference value                      | `<ValueRef:ClassName>`      |
+| `DotNetClass`                        | `<DotNetClass:ClassName>`   |
+| `DotNetControl`                      | `<DotNetControl:ClassName>` |
+| `DotNetObject`                       | `<DotNetObject:ClassName>`  |
 
-###### クラス名
+###### ClassName
 
 ```
--- `.`以降は0回以上の繰り返し
-<変数名.変数名>
+-- After `.`, zero or more repetitions
+<VariableName.VariableName>
 ```
 
-不特定の型を取りうる場合は`Any`を使用する。
+Use `Any` if the type can be unspecified.
+<!-- 不特定の型を取りうる場合は`Any`を使用する。 -->
 
-## ライセンス
+## License
+<!-- ライセンス -->
 
 [MIT License](https://github.com/imaoki/DocGenerator/blob/main/LICENSE)
