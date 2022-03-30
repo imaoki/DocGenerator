@@ -1,5 +1,8 @@
 # DocGenerator
 
+<!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/DocGenerator)](https://github.com/imaoki/DocGenerator/releases/latest) -->
+[![GitHub](https://img.shields.io/github/license/imaoki/DocGenerator)](https://github.com/imaoki/DocGenerator/blob/main/LICENSE)
+
 Generate HTML files based on documentation comments in script files.
 <!-- スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。 -->
 
