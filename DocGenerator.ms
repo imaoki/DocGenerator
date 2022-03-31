@@ -1,4 +1,36 @@
 /*! © 2022 imaoki | MIT License | https://github.com/imaoki */
+(
+  local hasMetRequirements
+  fn hasMetRequirements = (
+    isStruct ::std \
+        and isProperty ::std #StructName \
+        and classOf ::std.StructName == MAXScriptFunction \
+        and ::std.StructName() == #StandardStruct \
+    isStruct ::ParserCombinatorStruct \
+        and isProperty ::ParserCombinatorStruct #StructName \
+        and classOf ::ParserCombinatorStruct.StructName == MAXScriptFunction \
+        and ::ParserCombinatorStruct.StructName() == #StandardStruct \
+    isStruct ::MarkdownStruct \
+        and isProperty ::MarkdownStruct #StructName \
+        and classOf ::MarkdownStruct.StructName == MAXScriptFunction \
+        and ::MarkdownStruct.StructName() == #MarkdownStruct
+  )
+  if not hasMetRequirements() do (
+    local fileClass = DotNetClass "System.IO.File"
+    local pathClass = DotNetClass "System.IO.Path"
+    local currentDir = pathClass.GetDirectoryName (getSourceFileName())
+    local standardFile = currentDir + @"\Standard.min.ms"
+    local parserCombinatorFile = currentDir + @"\ParserCombinator.min.ms"
+    local markdownFile = currentDir + @"\Markdown.min.ms"
+    if fileClass.Exists standardFile do fileIn standardFile
+    if fileClass.Exists parserCombinatorFile do fileIn parserCombinatorFile
+    if fileClass.Exists markdownFile do fileIn markdownFile
+  )
+  if not hasMetRequirements() do (
+    format "[error]Requirement not met.\n"
+  )
+  ok
+)
 fileIn @"definitionPool.ms"
 /*-
 スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。
@@ -247,7 +279,7 @@ struct DocGeneratorStruct (
   ),
 
   /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.0.0",
+  private version = "1.1.1",
 
   /*- @returns <Name> */
   public fn StructName = #DocGeneratorStruct,
