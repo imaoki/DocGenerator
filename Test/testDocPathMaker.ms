@@ -21,7 +21,7 @@
   local scriptDir = pathUtility.GetDirectoryName docGeneratorDir
   local maxDir = pathUtility.GetDirectoryName scriptDir
 
-  local defaultTemplateFile = pathUtility.GetFullPath @"..\Template\default-template.html"
+  local defaultTemplateFile = pathUtility.GetFullPath @"..\DocGenerator.Template\default-template.html"
   local indexFile = pathUtility.GetFullPath @"..\..\Document\index.html"
 
   fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")

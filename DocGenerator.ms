@@ -6,11 +6,11 @@
         and isProperty ::std #StructName \
         and classOf ::std.StructName == MAXScriptFunction \
         and ::std.StructName() == #StandardStruct \
-    isStruct ::ParserCombinatorStruct \
+    and isStructDef ::ParserCombinatorStruct \
         and isProperty ::ParserCombinatorStruct #StructName \
         and classOf ::ParserCombinatorStruct.StructName == MAXScriptFunction \
-        and ::ParserCombinatorStruct.StructName() == #StandardStruct \
-    isStruct ::MarkdownStruct \
+        and ::ParserCombinatorStruct.StructName() == #ParserCombinatorStruct \
+    and isStructDef ::MarkdownStruct \
         and isProperty ::MarkdownStruct #StructName \
         and classOf ::MarkdownStruct.StructName == MAXScriptFunction \
         and ::MarkdownStruct.StructName() == #MarkdownStruct
@@ -279,7 +279,7 @@ struct DocGeneratorStruct (
   ),
 
   /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.1.1",
+  private version = "1.1.2",
 
   /*- @returns <Name> */
   public fn StructName = #DocGeneratorStruct,
