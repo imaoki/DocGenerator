@@ -1,0 +1,7 @@
+# Common
+_*
+*.mxsconfig
+
+# Specific
+!/Test/Data/_DirA/
+!/Test/Data/DirC/_FileG.ms
