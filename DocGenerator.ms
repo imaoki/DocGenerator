@@ -278,8 +278,8 @@ struct DocGeneratorStruct (
     html as String
   ),
 
-  /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.1.2",
+  /*- @prop <Array[<Integer>]> バージョン番号。メジャー、マイナー、パッチの順。 */
+  private version = #(1, 1, 2),
 
   /*- @returns <Name> */
   public fn StructName = #DocGeneratorStruct,
@@ -313,7 +313,7 @@ struct DocGeneratorStruct (
   ),
 
   /*-
-  @returns <String>
+  @returns <Array[<Integer>]>
   */
   public fn GetVersion = (
     this.version
