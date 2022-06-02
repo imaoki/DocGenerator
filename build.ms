@@ -38,7 +38,7 @@
   /* インストーラーオプション削除 */
   -- code = mp.RemoveInstallerOption code
   /* バンドルファイルを保存 */
-  mp.WriteAllText @".\Distribution\DocGenerator.bundle.ms" code
+  -- mp.WriteAllText @".\Distribution\DocGenerator.bundle.ms" code
   /* 最小化ファイルを保存 */
   code = mp.Minify code
   mp.WriteAllText @".\Distribution\DocGenerator.min.ms" code
