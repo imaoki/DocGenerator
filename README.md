@@ -53,7 +53,7 @@ Generate HTML files based on documentation comments in script files.
 ## Development Environment
 <!-- 開発環境 -->
 
-`2022.3 Update`
+`3ds Max 2024`
 
 ## Running Scripts
 <!-- スクリプトを実行する -->
