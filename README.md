@@ -3,7 +3,7 @@
 <!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/DocGenerator)](https://github.com/imaoki/DocGenerator/releases/latest) -->
 [![GitHub](https://img.shields.io/github/license/imaoki/DocGenerator)](https://github.com/imaoki/DocGenerator/blob/main/LICENSE)
 
-スクリプトファイル内のドキュメントコメントを基にHTMLファイルを生成する。
+MAXScriptのドキュメントコメントを基にHTMLファイルを生成する。
 <!-- Generate HTML files based on documentation comments in script files. -->
 
 ## 特徴
@@ -31,7 +31,7 @@
   <!-- * Any template file can be specified. -->
 
 [^1]:ディレクトリ単位の変換でのみ有効。
-  <!-- [^1]:Valid only for per-directory conversions. -->
+<!-- [^1]:Valid only for per-directory conversions. -->
 
 [^2]:現状自動リンクされるのは依存している変数のみで直接依存していない変数はリンクされない。
 <!-- [^2]:Currently, only dependent variables are automatically linked, and variables that are not directly dependent are not linked. -->
@@ -110,16 +110,6 @@
 ### 単一ファイルを変換
 <!-- ### Convert single file -->
 
-<!-- ```maxscript
-(
-  local dg = ::DocGeneratorStruct()
-  dg.FromFile @"C:\Script\Foo\Bar.ms"
-)
-
--- output destination
--- @"C:\Script\Document\foo-bar.html"
-``` -->
-
 ```maxscript
 (
   local dg = ::DocGeneratorStruct()
@@ -129,21 +119,20 @@
 -- 出力先
 -- @"C:\Script\Document\foo-bar.html"
 ```
+
+<!-- ```maxscript
+(
+  local dg = ::DocGeneratorStruct()
+  dg.FromFile @"C:\Script\Foo\Bar.ms"
+)
+
+-- output destination
+-- @"C:\Script\Document\foo-bar.html"
+``` -->
 
 ### ディレクトリ単位で変換
 <!-- ### Directory conversion -->
 
-<!-- ```maxscript
-(
-  local dg = ::DocGeneratorStruct()
-  dg.FromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
-)
-
--- output destination
--- @"C:\Script\Document\foo-bar.html"
--- @"C:\Script\Document\hoge-piyo.html"
-``` -->
-
 ```maxscript
 (
   local dg = ::DocGeneratorStruct()
@@ -154,20 +143,21 @@
 -- @"C:\Script\Document\foo-bar.html"
 -- @"C:\Script\Document\hoge-piyo.html"
 ```
+
+<!-- ```maxscript
+(
+  local dg = ::DocGeneratorStruct()
+  dg.FromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
+)
+
+-- output destination
+-- @"C:\Script\Document\foo-bar.html"
+-- @"C:\Script\Document\hoge-piyo.html"
+``` -->
 
 ### インデックスファイルを作成
 <!-- ### Create index file -->
 
-<!-- ```maxscript
-(
-  local dg = ::DocGeneratorStruct()
-  dg.IndexFromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
-)
-
--- output destination
--- @"C:\Script\Document\index.html"
-``` -->
-
 ```maxscript
 (
   local dg = ::DocGeneratorStruct()
@@ -178,28 +168,18 @@
 -- @"C:\Script\Document\index.html"
 ```
 
-### 除外指定
-<!-- ### Exclusion -->
-
 <!-- ```maxscript
 (
-  -- Files to ignore
-  local ignore = #(
-    @"*\_*",
-    @"*\test*",
-    @"*\install.ms",
-    @"*\uninstall.ms"
-  )
-  -- Exception specification for `ignore` (must be converted)
-  local exception = #(
-    @"*\TestValue\TestValue.ms"
-  )
-
   local dg = ::DocGeneratorStruct()
-  dg.FromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
-  dg.IndexFromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
+  dg.IndexFromDirectory @"C:\Script" recursive:true ignore:#(@"*\DocGenerator\*")
 )
+
+-- output destination
+-- @"C:\Script\Document\index.html"
 ``` -->
+
+### 除外指定
+<!-- ### Exclusion -->
 
 ```maxscript
 (
@@ -220,6 +200,26 @@
   dg.IndexFromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
 )
 ```
+
+<!-- ```maxscript
+(
+  -- Files to ignore
+  local ignore = #(
+    @"*\_*",
+    @"*\test*",
+    @"*\install.ms",
+    @"*\uninstall.ms"
+  )
+  -- Exception specification for `ignore` (must be converted)
+  local exception = #(
+    @"*\TestValue\TestValue.ms"
+  )
+
+  local dg = ::DocGeneratorStruct()
+  dg.FromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
+  dg.IndexFromDirectory @"C:\Script" recursive:true ignore:ignore exception:exception
+)
+``` -->
 
 ### オプション
 <!-- ### Options -->
@@ -294,14 +294,6 @@ var
 以下の種類のタグが使用可能。
 <!-- The following types of tags are available -->
 
-<!-- | Tag        | Use                       | -->
-<!-- | ---------- | ------------------------- | -->
-<!-- | `@var`     | Variable                  | -->
-<!-- | `@prop`    | Structure property        | -->
-<!-- | `@param`   | Function parameters       | -->
-<!-- | `@returns` | Return value of function  | -->
-<!-- | `@remarks` | Supplementary explanation | -->
-
 | タグ       | 用途             |
 | ---------- | ---------------- |
 | `@var`     | 変数             |
@@ -309,6 +301,14 @@ var
 | `@param`   | 関数パラメータ   |
 | `@returns` | 関数戻り値       |
 | `@remarks` | 補足説明         |
+
+<!-- | Tag        | Use                       | -->
+<!-- | ---------- | ------------------------- | -->
+<!-- | `@var`     | Variable                  | -->
+<!-- | `@prop`    | Structure property        | -->
+<!-- | `@param`   | Function parameters       | -->
+<!-- | `@returns` | Return value of function  | -->
+<!-- | `@remarks` | Supplementary explanation | -->
 
 ##### 変数
 <!-- ##### Variable -->
@@ -368,19 +368,19 @@ var
 ##### クラス宣言の種類
 <!-- ##### ClassDeclaration types -->
 
+| 名前                              | 用途                                        |
+| --------------------------------- | ------------------------------------------- |
+| [コンストラクタ](#コンストラクタ) | `DataPair`や`Dictionary`などの複合型        |
+| [アクセサ](#アクセサ)             | 配列                                        |
+| [クラス定義](#クラス定義)         | 構造体または`DotNetClass`                   |
+| [クラス名](#クラス名)             | 単一のクラス名または`.`で区切られた階層構造 |
+
 <!-- | Name            | Use                                                          | -->
 <!-- | --------------- | ------------------------------------------------------------ | -->
 <!-- | Constructor     | Composite types such as `DataPair` and `Dictionary`          | -->
 <!-- | Accessor        | Array                                                        | -->
 <!-- | ClassDefinition | Structure or `DotNetClass`                                   | -->
 <!-- | ClassName       | Single class name or hierarchical structure separated by `.` | -->
-
-| 名前           | 用途                                        |
-| -------------- | ------------------------------------------- |
-| コンストラクタ | `DataPair`や`Dictionary`などの複合型        |
-| アクセサ       | 配列                                        |
-| クラス定義     | 構造体または`DotNetClass`                   |
-| クラス名       | 単一のクラス名または`.`で区切られた階層構造 |
 
 ###### コンストラクタ
 <!-- ###### Constructor -->
@@ -413,21 +413,6 @@ var
 <VariableName:ClassName>
 ```
 
-<!-- | Type                                 | VariableName                | -->
-<!-- | ------------------------------------ | --------------------------- | -->
-<!-- | Structure definition                 | `<StructDef:ClassName>`     | -->
-<!-- | Structure instance                   | `<Struct:ClassName>`        | -->
-<!-- | Structure definition of unknown type | `<StructDef>`               | -->
-<!-- | Structure instance of unknown type   | `<Struct>`                  | -->
-<!-- | Attribute definition                 | `<AttributeDef:ClassName>`  | -->
-<!-- | Attribute instance                   | `<Attribute:ClassName>`     | -->
-<!-- | Attribute definition of unknown type | `<AttributeDef>`            | -->
-<!-- | Attribute instance of unknown type   | `<Attribute>`               | -->
-<!-- | Reference value                      | `<ValueRef:ClassName>`      | -->
-<!-- | `DotNetClass`                        | `<DotNetClass:ClassName>`   | -->
-<!-- | `DotNetControl`                      | `<DotNetControl:ClassName>` | -->
-<!-- | `DotNetObject`                       | `<DotNetObject:ClassName>`  | -->
-
 | 種類                                   | 表記                        |
 | -------------------------------------- | --------------------------- |
 | 構造体定義                             | `<StructDef:ClassName>`     |
@@ -443,18 +428,33 @@ var
 | `DotNetControl`                        | `<DotNetControl:ClassName>` |
 | `DotNetObject`                         | `<DotNetObject:ClassName>`  |
 
+<!-- | Type                                 | VariableName                | -->
+<!-- | ------------------------------------ | --------------------------- | -->
+<!-- | Structure definition                 | `<StructDef:ClassName>`     | -->
+<!-- | Structure instance                   | `<Struct:ClassName>`        | -->
+<!-- | Structure definition of unknown type | `<StructDef>`               | -->
+<!-- | Structure instance of unknown type   | `<Struct>`                  | -->
+<!-- | Attribute definition                 | `<AttributeDef:ClassName>`  | -->
+<!-- | Attribute instance                   | `<Attribute:ClassName>`     | -->
+<!-- | Attribute definition of unknown type | `<AttributeDef>`            | -->
+<!-- | Attribute instance of unknown type   | `<Attribute>`               | -->
+<!-- | Reference value                      | `<ValueRef:ClassName>`      | -->
+<!-- | `DotNetClass`                        | `<DotNetClass:ClassName>`   | -->
+<!-- | `DotNetControl`                      | `<DotNetControl:ClassName>` | -->
+<!-- | `DotNetObject`                       | `<DotNetObject:ClassName>`  | -->
+
 ###### クラス名
 <!-- ###### ClassName -->
-
-<!-- ```
--- After `.`, zero or more repetitions
-<VariableName.VariableName>
-``` -->
 
 ```
 -- `.`の後、0回以上の繰り返し
 <VariableName.VariableName>
 ```
+
+<!-- ```
+-- After `.`, zero or more repetitions
+<VariableName.VariableName>
+``` -->
 
 不特定の型を取りうる場合は`Any`を使用する。
 <!-- Use `Any` if the type can be unspecified. -->
