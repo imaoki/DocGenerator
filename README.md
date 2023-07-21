@@ -64,7 +64,7 @@ MAXScriptのドキュメントコメントを基にHTMLファイルを生成す�
 
 ## 例
 
-[mxsdoc](https://imaoki.github.io/mxskb/mxsdoc/)
+[mxsdoc](https://imaoki.github.io/kb/mxsdoc/)
 
 ## 使い方
 
@@ -154,7 +154,7 @@ MAXScriptのドキュメントコメントを基にHTMLファイルを生成す�
 )
 ```
 
-詳細は[mxsdoc.DocOptions.ms](https://imaoki.github.io/mxskb/mxsdoc/docgenerator-docoptions.html)を参照。
+詳細は[mxsdoc.DocOptions.ms](https://imaoki.github.io/kb/mxsdoc/docgenerator-docoptions.html)を参照。
 
 ## 既知の問題
 
